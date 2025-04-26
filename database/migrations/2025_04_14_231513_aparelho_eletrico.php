@@ -19,12 +19,12 @@ return new class extends Migration
         Schema::create('aparelho_eletrico', function (Blueprint $t) {
             $t->id();
             $t->unsignedBigInteger('marca');
-            $t->string('codigo')->index()->unique();
+            $t->string('codigo', 30)->index()->unique();
             $t->text('nome');
             $t->integer('potencia')->nullable();
             $t->integer('voltagem_minima')->nullable();
             $t->integer('voltagem_maxima')->nullable();
-            $t->integer('corrente_maxima_entrada')->nullable();
+            $t->float('corrente_maxima_entrada', 5, 2)->nullable();
             $t->foreign('marca')->references('id')->on('marca');
         });
     }

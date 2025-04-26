@@ -13,22 +13,22 @@ return new class extends Migration
     {
         Schema::create('cliente', function (Blueprint $t) {
             $t->id();
-            $t->string('nome', 100)->unique();
-            $t->string('cpf', 14)->unique()->nullable();
-            $t->string('cep', 11)->unique()->nullable();
-            $t->string('rua', 100)->nullable();
-            $t->string('bairro', 100)->nullable();
-            $t->string('numero', 10)->nullable();
-            $t->string('telefone', 11)->unique()->nullable();
-            $t->string('email')->unique()->nullable();
+            $t->string('nome', 50)->unique();
+            $t->string('cpf', 11)->unique()->nullable();
+            $t->string('cep', 8)->nullable();
+            $t->string('rua', 64)->nullable();
+            $t->string('bairro', 64)->nullable();
+            $t->string('numero', 5)->nullable();
+            $t->string('telefone', 11)->nullable();
+            $t->string('email')->nullable();
             $t->date('data_nascimento')->nullable();
         });
 
         Schema::create('funcionario', function (Blueprint $t) {
             $t->id();
-            $t->string('nome', 100)->unique();
-            $t->string('telefone', 11)->unique()->nullable();
-            $t->string('email')->unique()->nullable();
+            $t->string('nome', 50)->unique();
+            $t->string('telefone', 11)->nullable();
+            $t->string('email')->nullable();
         });
 
         Schema::create('venda', function (Blueprint $t) {
@@ -42,13 +42,13 @@ return new class extends Migration
 
         Schema::create('item_vendido', function (Blueprint $t) {
             $t->id();
-            $t->unsignedBigInteger('item_id');
-            $t->unsignedBigInteger('venda_id');
-            $t->decimal('desconto', 10, 2);
-            $t->decimal('promocao', 10, 2);
-            $t->foreign('item_id')->references('id')->on('item');
-            $t->foreign('venda_id')->references('id')->on('venda');
-            $t->unique(['item_id', 'venda_id']);
+            $t->unsignedBigInteger('item');
+            $t->unsignedBigInteger('venda');
+            $t->decimal('desconto', 10, 2)->nullable();
+            $t->decimal('promocao', 10, 2)->nullable();
+            $t->foreign('item')->references('id')->on('item');
+            $t->foreign('venda')->references('id')->on('venda');
+            $t->unique(['item', 'venda']);
         });
     }
 
