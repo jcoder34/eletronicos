@@ -35,6 +35,7 @@ return new class extends Migration
             $t->id();
             $t->unsignedBigInteger('funcionario');
             $t->unsignedBigInteger('cliente');
+            $t->decimal('total', 10, 2);
             $t->timestamp('data');
             $t->foreign('funcionario')->references('id')->on('funcionario');
             $t->foreign('cliente')->references('id')->on('cliente');
@@ -46,8 +47,8 @@ return new class extends Migration
             $t->unsignedBigInteger('venda');
             $t->decimal('desconto', 10, 2)->nullable();
             $t->decimal('promocao', 10, 2)->nullable();
-            $t->foreign('item')->references('id')->on('item');
-            $t->foreign('venda')->references('id')->on('venda');
+            $t->foreign('item')->references('id')->on('item')->onDelete('cascade');
+            $t->foreign('venda')->references('id')->on('venda')->onDelete('cascade');
             $t->unique(['item', 'venda']);
         });
     }
@@ -57,9 +58,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cliente');
-        Schema::dropIfExists('funcionario');
-        Schema::dropIfExists('venda');
         Schema::dropIfExists('item_vendido');
+        Schema::dropIfExists('venda');
+        Schema::dropIfExists('funcionario');
+        Schema::dropIfExists('cliente');
     }
 };
