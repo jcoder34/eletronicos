@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -11,7 +12,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $itens = Item::all();
+        return view('item.index', compact('itens'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('item.create');
     }
 
     /**
@@ -27,7 +29,15 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item([
+            'aparelho_eletrico' => $request->input('aparelho_eletrico'),
+            'valor' => $request->input('valor'),
+            'data' => $request->input('data')
+        ]);
+
+        $item->save();
+
+        return redirect()->route('item.index');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Funcionario;
 
 class FuncionarioController extends Controller
 {
@@ -11,7 +12,8 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //
+        $funcionarios = Funcionario::all();
+        return view('funcionario.index', compact('funcionarios'));
     }
 
     /**
@@ -19,7 +21,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('funcionario.create');
     }
 
     /**
@@ -27,7 +29,15 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $funcionario = new Funcionario([
+            'nome' => $request->input('nome'),
+            'telefone' => $request->input('telefone'),
+            'email' => $request->input('email')
+        ]);
+
+        $funcionario->save();
+
+        return redirect()->route('funcionario.index');
     }
 
     /**

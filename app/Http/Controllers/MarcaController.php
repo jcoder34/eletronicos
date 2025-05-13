@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Marca;
 
 class MarcaController extends Controller
 {
@@ -12,7 +13,7 @@ class MarcaController extends Controller
     public function index()
     {
         $marcas = Marca::all();
-        return view('marcas.index', compact('marcas'));
+        return view('marca.index', compact('marcas'));
     }
 
     /**
@@ -20,7 +21,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marca.create');
     }
 
     /**
@@ -28,7 +29,13 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $marca = new Marca([
+            'nome' => $request->input('nome')
+        ]);
+
+        $marca->save();
+
+        return redirect()->route('marca.index');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ItemVendido;
 
 class ItemVendidoController extends Controller
 {
@@ -11,7 +12,8 @@ class ItemVendidoController extends Controller
      */
     public function index()
     {
-        //
+        $itens_vendidos = ItemVendido::all();
+        return view('item_vendido.index', compact('itens_vendidos'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ItemVendidoController extends Controller
      */
     public function create()
     {
-        //
+        return view('item_vendido.create');
     }
 
     /**
@@ -27,7 +29,16 @@ class ItemVendidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item_vendido = new ItemVendido([
+            'item' => $request->input('item'),
+            'venda' => $request->input('venda'),
+            'desconto' => $request->input('desconto'),
+            'promocao' => $request->input('promocao')
+        ]);
+
+        $item_vendido->save();
+
+        return redirect()->route('item_vendido.index');
     }
 
     /**

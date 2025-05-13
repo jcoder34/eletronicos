@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Venda;
 
 class VendaController extends Controller
 {
@@ -11,7 +12,8 @@ class VendaController extends Controller
      */
     public function index()
     {
-        //
+        $vendas = Venda::all();
+        return view('venda.index', compact('vendas'));
     }
 
     /**
@@ -19,7 +21,7 @@ class VendaController extends Controller
      */
     public function create()
     {
-        //
+        return view('venda.create');
     }
 
     /**
@@ -27,7 +29,15 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venda = new Venda([
+            'funcionario' => $request->input('funcionario'),
+            'cliente' => $request->input('cliente'),
+            'total' => $request->input('total')
+        ]);
+
+        $venda->save();
+
+        return redirect()->route('venda.index');
     }
 
     /**

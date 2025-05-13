@@ -36,7 +36,7 @@ return new class extends Migration
             $t->unsignedBigInteger('funcionario');
             $t->unsignedBigInteger('cliente');
             $t->decimal('total', 10, 2);
-            $t->timestamp('data');
+            $t->timestamps();
             $t->foreign('funcionario')->references('id')->on('funcionario');
             $t->foreign('cliente')->references('id')->on('cliente');
         });

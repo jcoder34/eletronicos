@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AparelhoEletrico;
 
 class AparelhoEletricoController extends Controller
 {
@@ -11,7 +12,8 @@ class AparelhoEletricoController extends Controller
      */
     public function index()
     {
-        //
+        $aparelhos_eletricos = AparelhoEletrico::all();
+        return view('aparelho_eletrico.index', compact('aparelhos_eletricos'));
     }
 
     /**
@@ -19,7 +21,7 @@ class AparelhoEletricoController extends Controller
      */
     public function create()
     {
-        //
+        return view('aparelho_eletrico.create');
     }
 
     /**
@@ -27,7 +29,19 @@ class AparelhoEletricoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $aparelho_eletrico = new AparelhoEletrico([
+            'marca' => $request->input('marca'),
+            'codigo' => $request->input('codigo'),
+            'nome' => $request->input('nome'),
+            'potencia' => $request->input('potencia'),
+            'voltagem_minima' => $request->input('voltagem_minima'),
+            'voltagem_maxima' => $request->input('voltagem_maxima'),
+            'corrente_maxima_entrada' => $request->input('corrente_maxima_entrada')
+        ]);
+
+        $aparelho_eletrico->save();
+
+        return redirect()->route('aparelho_eletrico.index');
     }
 
     /**
