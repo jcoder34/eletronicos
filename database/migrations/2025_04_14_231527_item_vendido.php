@@ -22,13 +22,21 @@ return new class extends Migration
             $t->string('telefone', 11)->nullable();
             $t->string('email')->nullable();
             $t->date('data_nascimento')->nullable();
+            $t->timestamps();
         });
 
         Schema::create('funcionario', function (Blueprint $t) {
             $t->id();
             $t->string('nome', 50)->unique();
+            $t->string('cpf', 11)->unique()->nullable();
+            $t->string('cep', 8)->nullable();
+            $t->string('rua', 64)->nullable();
+            $t->string('bairro', 64)->nullable();
+            $t->string('numero', 5)->nullable();
             $t->string('telefone', 11)->nullable();
             $t->string('email')->nullable();
+            $t->date('data_nascimento')->nullable();
+            $t->timestamps();
         });
 
         Schema::create('venda', function (Blueprint $t) {
@@ -47,6 +55,7 @@ return new class extends Migration
             $t->unsignedBigInteger('venda');
             $t->decimal('desconto', 10, 2)->nullable();
             $t->decimal('promocao', 10, 2)->nullable();
+            $t->timestamps();
             $t->foreign('item')->references('id')->on('item')->onDelete('cascade');
             $t->foreign('venda')->references('id')->on('venda')->onDelete('cascade');
             $t->unique(['item', 'venda']);

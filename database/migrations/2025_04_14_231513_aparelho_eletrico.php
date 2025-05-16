@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('marca', function (Blueprint $t) {
             $t->id();
             $t->text('nome')->unique();
+            $t->timestamps();
         });
 
         Schema::create('aparelho_eletrico', function (Blueprint $t) {
@@ -25,6 +26,7 @@ return new class extends Migration
             $t->integer('voltagem_minima')->nullable();
             $t->integer('voltagem_maxima')->nullable();
             $t->float('corrente_maxima_entrada', 5, 2)->nullable();
+            $t->timestamps();
             $t->foreign('marca')->references('id')->on('marca');
         });
     }

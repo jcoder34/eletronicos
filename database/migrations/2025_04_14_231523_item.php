@@ -16,6 +16,7 @@ return new class extends Migration
             $t->unsignedBigInteger('aparelho_eletrico');
             $t->decimal('valor', 10, 2);
             $t->date('data');
+            $t->timestamps();
             $t->foreign('aparelho_eletrico')->references('id')->on('aparelho_eletrico');
         });
     }
