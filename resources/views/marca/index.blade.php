@@ -1,3 +1,7 @@
+<x-layouts.app :title="__('Marcas')">
+  <head>
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
   <div>
     <div>
       <h1>Marcas</h1>
@@ -38,3 +42,4 @@
       </table>
     @endif
   </div>
+</x-layouts.app>

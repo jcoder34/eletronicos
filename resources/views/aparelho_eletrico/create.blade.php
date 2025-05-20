@@ -1,4 +1,7 @@
-
+<x-layouts.app>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    </head>
     <div class="container">
         <h1>Novo Aparelho Elétrico</h1>
         <form action="{{ route('aparelho_eletrico.store') }}" method="POST">
@@ -36,3 +39,4 @@
           <a href="{{ route('aparelho_eletrico.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
+</x-layouts.app>

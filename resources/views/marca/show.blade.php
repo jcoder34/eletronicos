@@ -1,4 +1,7 @@
-
+<x-layouts.app>
+  <head>
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
   <div>
     <h1>{{ $marca->nome }}</h1>
 
@@ -9,3 +12,4 @@
       <a href="{{ url()->previous() }}">Voltar</a>
     </div>
   </div>
+</x-layouts.app>

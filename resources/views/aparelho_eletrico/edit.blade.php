@@ -1,4 +1,7 @@
-
+<x-layouts.app :title="__('Editar Aparelho Elétrico')" :dark-mode="auth()->user()->pref_dark_mode">
+  <head>
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
   <div>
     <h1>Editar Aparelho Elétrico</h1>
 
@@ -87,3 +90,4 @@
       </div>
     </form>
   </div>
+</x-layouts.app>

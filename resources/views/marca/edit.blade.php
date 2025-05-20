@@ -1,4 +1,7 @@
-
+<x-layouts.app :title="__('Editar Marca')" :dark-mode="auth()->user()->pref_dark_mode">
+  <head>
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
   <div>
     <h1>Mudar o nome da Marca</h1>
 
@@ -23,3 +26,4 @@
       </div>
     </form>
   </div>
+</x-layouts.app>

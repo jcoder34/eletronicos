@@ -1,4 +1,7 @@
-
+<x-layouts.app :title="__('Aparelhos Elétricos')">
+  <head>
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
   <div>
     <div>
       <h1>Aparelhos Elétricos</h1>
@@ -49,3 +52,4 @@
       </table>
     @endif
   </div>
+</x-layouts.app>

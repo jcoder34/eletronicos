@@ -1,4 +1,7 @@
-
+<x-layouts.app>
+  <head>
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
   <div>
     <h1>{{ $aparelho_eletrico->nome }}</h1>
     <h2>Código: {{ $aparelho_eletrico->codigo }}</h2>
@@ -25,3 +28,4 @@
       <a href="{{ url()->previous() }}">Voltar</a>
     </div>
   </div>
+</x-layouts.app>
