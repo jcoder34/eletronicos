@@ -1,4 +1,4 @@
-<body>
+
     <div class="container">
         <h1>Nova Marca</h1>
         <form action="{{ route('marca.store') }}" method="POST">
@@ -11,4 +11,3 @@
             <a href="{{ route('marca.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
-</body>
