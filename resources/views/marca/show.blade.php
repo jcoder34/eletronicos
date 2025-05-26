@@ -1,15 +1,19 @@
 <x-layouts.app>
-  <head>
-      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  </head>
-  <div>
-    <h1>{{ $marca->nome }}</h1>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    </head>
+    <div class="container">
+        <h1>Marca</h1>
 
-    <p>{{ $marca->id }}</p>
+        <div class="card">
+            <div class="card-section">
+                <h2>Nome:</h2> 
+                <p>{{ $marca->nome }}</p>
+            </div>
 
-    <div>
-      <a href="{{ route('marca.create') }}">Cadastrar Marca</a>
-      <a href="{{ url()->previous() }}">Voltar</a>
+            <div class="form-actions">
+                <a href="{{ route('marca.edit', $marca) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('marca.index')}}" class="btn gray">Voltar</a>
+            </div>
     </div>
-  </div>
 </x-layouts.app>

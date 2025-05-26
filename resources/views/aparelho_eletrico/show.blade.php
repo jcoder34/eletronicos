@@ -1,31 +1,48 @@
 <x-layouts.app>
-  <head>
-      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  </head>
-  <div>
-    <h1>{{ $aparelho_eletrico->nome }}</h1>
-    <h2>Código: {{ $aparelho_eletrico->codigo }}</h2>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    </head>
+    <div class="container">
+        <h1>Detalhes do Aparelho Elétrico</h1>
 
-      <p>{{ $aparelho_eletrico->id }}</p>
+        <div class="card">
+            <div class="card-section">
+                <h2>Nome:</h2>
+                <p>{{ $aparelho_eletrico->nome }}</p>
+            </div>
 
-      <p>Marca: {{ $aparelho_eletrico->marca }}</p>
+            <div class="card-section">
+                <h2>Código:</h2>
+                <p>{{ $aparelho_eletrico->codigo }}</p>
+            </div>
+    
+            <div class="card-section">
+                <h2>Marca:</h2>
+                <p>{{ $aparelho_eletrico->marca->nome }}</p>
+            </div>
 
-      @if($aparelho_eletrico->potencia)
-        <p>Potência (W): {{ $aparelho_eletrico->potencia }}</p>
-      @endif
-      @if($aparelho_eletrico->voltagem_minima)
-        <p>Voltagem Mínima: {{ $aparelho_eletrico->voltagem_minima }}</p>
-      @endif
-      @if($aparelho_eletrico->voltagem_maxima)
-        <p>Voltagem Máxima: {{ $aparelho_eletrico->voltagem_maxima }}</p>
-      @endif
-      @if($aparelho_eletrico->corrente_maxima_entrada)
-        <p>Corrente Máxima de Entrada (A): {{ $aparelho_eletrico->corrente_maxima_entrada }}</p>
-      @endif
+            <div class="card-section">
+                <h2>Potência (W)</h2>
+                <p>{{ $aparelho_eletrico->potencia ?? '-' }}</p>
+            </div>
+            
+            <div class="card-section">
+                <h2>Voltagem Mínima:</h2>
+                <p>{{ $aparelho_eletrico->voltagem_minima ?? '-' }}</p>
+            </div>
+            <div class="card-section">
+                <h2>Voltagem Máxima:</h2>
+                <p>{{ $aparelho_eletrico->voltagem_maxima ?? '-' }}</p>
+            </div>
+            <div class="card-section">
+                <h2>Corrente Máxima de Entrada (A):</h2>
+                <p>{{ $aparelho_eletrico->corrente_maxima_entrada ?? '-' }}</p>
+            </div>
 
-    <div>
-      <a href="{{ route('aparelho_eletrico.create') }}">Novo Aparelho Elétrico</a>
-      <a href="{{ url()->previous() }}">Voltar</a>
+            <div class="form-actions">
+                <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('aparelho_eletrico.index') }}" class="btn gray">Voltar</a>
+            </div>
+        </div>
     </div>
-  </div>
 </x-layouts.app>

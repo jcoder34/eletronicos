@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AparelhoEletrico;
+use App\Models\Marca;
 
 class AparelhoEletricoController extends Controller
 {
@@ -13,7 +14,7 @@ class AparelhoEletricoController extends Controller
      */
     public function index()
     {
-        $aparelhos_eletricos = AparelhoEletrico::all();
+        $aparelhos_eletricos = AparelhoEletrico::with('marca')->get();
         return view('aparelho_eletrico.index', compact('aparelhos_eletricos'));
     }
 
@@ -22,7 +23,9 @@ class AparelhoEletricoController extends Controller
      */
     public function create()
     {
-        return view('aparelho_eletrico.create');
+        $marcas = Marca::all();
+
+        return view('aparelho_eletrico.create', compact('marcas'));
     }
 
     /**
@@ -31,7 +34,7 @@ class AparelhoEletricoController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'marca' => 'required',
+            'marca_id' => 'required',
             'codigo' => 'required|string|max:30',
             'nome' => 'required|string',
             'potencia' => 'nullable',
@@ -51,8 +54,8 @@ class AparelhoEletricoController extends Controller
      */
     public function show($id)
     {
-        $aparelho_eletrico = AparelhoEletrico::findOrFail($id);
-        return view('aparelho_eletrico.show', ['aparelho_eletrico' => $aparelho_eletrico]);
+        $aparelho_eletrico = AparelhoEletrico::all()->findOrFail($id);
+        return view('aparelho_eletrico.show', compact('aparelho_eletrico'));
     }
 
     /**
@@ -60,8 +63,10 @@ class AparelhoEletricoController extends Controller
      */
     public function edit($id)
     {
-        $aparelho_eletrico = AparelhoEletrico::findOrFail($id);
-        return view('aparelho_eletrico.edit', compact('aparelho_eletrico'));
+        $aparelho_eletrico = AparelhoEletrico::all()->findOrFail($id);
+        $marcas = Marca::all();
+
+        return view('aparelho_eletrico.edit', compact('aparelho_eletrico', 'marcas'));
     }
 
     /**
@@ -71,7 +76,7 @@ class AparelhoEletricoController extends Controller
     {
         $aparelho_eletrico = AparelhoEletrico::findOrFail($id);
         $data = $request->validate([
-            'marca' => 'required',
+            'marca_id' => 'required',
             'codigo' => 'required|string|max:30',
             'nome' => 'required|string',
             'potencia' => 'nullable',
@@ -91,8 +96,7 @@ class AparelhoEletricoController extends Controller
      */
     public function destroy($id)
     {
-        $aparelho_eletrico = AparelhoEletrico::findOrFail($id);
-
+        $aparelho_eletrico = AparelhoEletrico::all()->findOrFail($id);
         $aparelho_eletrico->delete();
 
         return redirect()->route('aparelho_eletrico.index')
