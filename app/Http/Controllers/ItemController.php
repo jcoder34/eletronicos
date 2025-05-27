@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\AparelhoEletrico;
 
+use Illuminate\Support\Facades\Log;
+
 class ItemController extends Controller
 {
     /**
@@ -33,8 +35,8 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'aparelho_eletrico_id' => 'required|exists:aparelho_eletrico,id',
-            'nome' => 'required|string',
+            'aparelho_eletrico_id' => 'required',
+            'valor' => 'required|string',
             'data' => 'required'
         ]);
 

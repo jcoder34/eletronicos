@@ -9,7 +9,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="aparelho_eletrico">Aparelho Elétrico:</label>
+                <label for="aparelho_eletrico_id">Aparelho Elétrico:</label>
                 <select name="aparelho_eletrico_id" id="aparelho_eletrico_id" required>
                     <option value="">Selecione...</option>
                     @foreach($aparelhos_eletricos as $aparelho_eletrico)
