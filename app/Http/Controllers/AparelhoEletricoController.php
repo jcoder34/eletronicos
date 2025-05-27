@@ -34,7 +34,7 @@ class AparelhoEletricoController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'marca_id' => 'required',
+            'marca_id' => 'required|exists:marca,id',
             'codigo' => 'required|string|max:30',
             'nome' => 'required|string',
             'potencia' => 'nullable',

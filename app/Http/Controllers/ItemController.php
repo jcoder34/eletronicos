@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\AparelhoEletrico;
 
 class ItemController extends Controller
 {
@@ -12,7 +13,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $itens = Item::all();
+        $itens = Item::with('aparelho_eletrico')->get();
         return view('item.index', compact('itens'));
     }
 
@@ -21,7 +22,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('item.create');
+        $aparelhos_eletricos = AparelhoEletrico::all();
+
+        return view('item.create', compact('aparelhos_eletricos'));
     }
 
     /**
@@ -29,29 +32,31 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item([
-            'aparelho_eletrico' => $request->input('aparelho_eletrico'),
-            'valor' => $request->input('valor'),
-            'data' => $request->input('data')
+        $data = $request->validate([
+            'aparelho_eletrico_id' => 'required|exists:aparelho_eletrico,id',
+            'nome' => 'required|string',
+            'data' => 'required'
         ]);
 
-        $item->save();
+        $item = Item::create($data);
 
-        return redirect()->route('item.index');
+        return redirect()->route('item.show', $item)
+                         ->with('success', 'Item criado com sucesso.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $item = Item::all()->findOrFail($id);
+        return view('item.show', compact('item'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
     }
@@ -59,7 +64,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -67,7 +72,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
     }

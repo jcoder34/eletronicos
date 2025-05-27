@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('item', function (Blueprint $t) {
             $t->id();
-            $t->unsignedBigInteger('aparelho_eletrico');
+            $t->unsignedBigInteger('aparelho_eletrico_id');
             $t->decimal('valor', 10, 2);
             $t->date('data');
             $t->timestamps();
-            $t->foreign('aparelho_eletrico')->references('id')->on('aparelho_eletrico');
+            $t->foreign('aparelho_eletrico_id')->references('id')->on('aparelho_eletrico')->onDelete('cascade');;
         });
     }
 

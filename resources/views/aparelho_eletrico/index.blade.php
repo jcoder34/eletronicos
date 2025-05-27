@@ -5,7 +5,7 @@
     <div class="container-big">
         <div class="header">
             <h1>Aparelhos Elétricos</h1>
-            <a href="{{ route('aparelho_eletrico.create') }}">Cadastrar Aparelho Elétrico</a>
+            <a href="{{ route('aparelho_eletrico.create') }}" class="btn">Cadastrar Aparelho Elétrico</a>
         </div>
 
         @if (session('success'))
@@ -41,8 +41,8 @@
                             <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="link yellow">Editar</a>
                             <form action="{{ route('aparelho_eletrico.destroy', $aparelho_eletrico) }}" method="POST" class="inline">
                                 @csrf
-                                @method('DELETE')
-                                <button class="link red" onclick="return confirm('Tem certeza que deseja excluir este aparelho?')">Excluir</button>
+                                @method('DELETE')                                
+                                <button type="button" class="btn-excluir link red" data-nome="{{ $aparelho_eletrico->nome }}">Excluir</button>
                             </form>
                         </td>
                     </tr>

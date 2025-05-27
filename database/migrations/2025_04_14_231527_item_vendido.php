@@ -41,24 +41,24 @@ return new class extends Migration
 
         Schema::create('venda', function (Blueprint $t) {
             $t->id();
-            $t->unsignedBigInteger('funcionario');
-            $t->unsignedBigInteger('cliente');
+            $t->unsignedBigInteger('funcionario_id');
+            $t->unsignedBigInteger('cliente_id');
             $t->decimal('total', 10, 2);
             $t->timestamps();
-            $t->foreign('funcionario')->references('id')->on('funcionario');
-            $t->foreign('cliente')->references('id')->on('cliente');
+            $t->foreign('funcionario_id')->references('id')->on('funcionario')->onDelete('cascade');;
+            $t->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');;
         });
 
         Schema::create('item_vendido', function (Blueprint $t) {
             $t->id();
-            $t->unsignedBigInteger('item');
-            $t->unsignedBigInteger('venda');
+            $t->unsignedBigInteger('item_id');
+            $t->unsignedBigInteger('venda_id');
             $t->decimal('desconto', 10, 2)->nullable();
             $t->decimal('promocao', 10, 2)->nullable();
             $t->timestamps();
-            $t->foreign('item')->references('id')->on('item')->onDelete('cascade');
-            $t->foreign('venda')->references('id')->on('venda')->onDelete('cascade');
-            $t->unique(['item', 'venda']);
+            $t->foreign('item_id')->references('id')->on('item')->onDelete('cascade')->onDelete('cascade');;
+            $t->foreign('venda_id')->references('id')->on('venda')->onDelete('cascade')->onDelete('cascade');;
+            $t->unique(['item_id', 'venda_id']);
         });
     }
 

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="header">
             <h1>Marcas</h1>
-            <a href="{{ route('marca.create') }}">Nova Marca</a>
+            <a href="{{ route('marca.create') }}" class="btn">Nova Marca</a>
         </div>
 
         @if (session('success'))
@@ -34,7 +34,7 @@
                             <form action="{{ route('marca.destroy', $marca) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="link red" onclick="return confirm('Tem certeza que deseja excluir esta marca?')">Excluir</button>
+                                <button type="button" class="btn-excluir link red" data-nome="{{ $marca->nome }}">Excluir</button>
                             </form>
                         </td>
                     </tr>

@@ -27,7 +27,7 @@ return new class extends Migration
             $t->integer('voltagem_maxima')->nullable();
             $t->float('corrente_maxima_entrada', 5, 2)->nullable();
             $t->timestamps();
-            $t->foreign('marca_id')->references('id')->on('marca');
+            $t->foreign('marca_id')->references('id')->on('marca')->onDelete('cascade');;
         });
     }
 

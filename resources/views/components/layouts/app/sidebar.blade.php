@@ -12,8 +12,84 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
+                <flux:navlist.group :heading="__('Menu')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    
+                    <flux:navlist.group
+                        heading="Marcas"
+                        expandable
+                        :expanded="request()->routeIs('marca.*')"
+                        class="mt-4">
+                        
+                        <flux:navlist.item
+                            icon="list-bullet"
+                            :href="route('marca.index')"
+                            :current="request()->routeIs('marca.index')"
+                            wire:navigate
+                        >
+                            {{ __('Listar') }}
+                        </flux:navlist.item>
+
+                        <flux:navlist.item
+                            icon="plus-circle"
+                            :href="route('marca.create')"
+                            :current="request()->routeIs('marca.create')"
+                            wire:navigate
+                        >
+                            {{ __('Nova') }}
+                        </flux:navlist.item>
+                    </flux:navlist.group>
+
+                    <flux:navlist.group
+                        heading="Aparelhos Elétricos"
+                        expandable
+                        :expanded="request()->routeIs('aparelho_eletrico.*')"
+                        class="mt-4">
+                        
+                        <flux:navlist.item
+                            icon="list-bullet"
+                            :href="route('aparelho_eletrico.index')"
+                            :current="request()->routeIs('aparelho_eletrico.index')"
+                            wire:navigate
+                        >
+                            {{ __('Listar') }}
+                        </flux:navlist.item>
+
+                        <flux:navlist.item
+                            icon="plus-circle"
+                            :href="route('aparelho_eletrico.create')"
+                            :current="request()->routeIs('aparelho_eletrico.create')"
+                            wire:navigate
+                        >
+                            {{ __('Novo') }}
+                        </flux:navlist.item>
+                    </flux:navlist.group>
+
+                    <flux:navlist.group
+                        heading="Itens"
+                        expandable
+                        :expanded="request()->routeIs('item.*')"
+                        class="mt-4">
+                        
+                        <flux:navlist.item
+                            icon="list-bullet"
+                            :href="route('item.index')"
+                            :current="request()->routeIs('item.index')"
+                            wire:navigate
+                        >
+                            {{ __('Listar') }}
+                        </flux:navlist.item>
+
+                        <flux:navlist.item
+                            icon="plus-circle"
+                            :href="route('item.create')"
+                            :current="request()->routeIs('item.create')"
+                            wire:navigate
+                        >
+                            {{ __('Novo') }}
+                        </flux:navlist.item>
+                    </flux:navlist.group>
+                    
                 </flux:navlist.group>
             </flux:navlist>
 
