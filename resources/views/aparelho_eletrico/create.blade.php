@@ -35,12 +35,32 @@
                 <input type="number" name="potencia" />
             </div>
             <div class="form-group">
+                <label for="consumo">Consumo (KW/h):</label>
+                <input type="number" name="consumo" step="0.001"/>
+            </div>
+            <div class="form-group">
                 <label for="voltagem_minima">Voltagem mínima:</label>
                 <input type="number" name="voltagem_minima" />
             </div>
             <div class="form-group">
                 <label for="voltagem_maxima">Voltagem máxima:</label>
                 <input type="number" name="voltagem_maxima" />
+            </div>
+            <div class="form-group">
+                <label for="largura">Largura (mm):</label>
+                <input type="number" name="largura" />
+            </div>
+            <div class="form-group">
+                <label for="altura">Altura (mm):</label>
+                <input type="number" name="altura" />
+            </div>
+            <div class="form-group">
+                <label for="profundidade">Profundidade (mm):</label>
+                <input type="number" name="profundidade" />
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso (g):</label>
+                <input type="number" name="peso" />
             </div>
             <div class="form-group">
                 <label for="corrente_maxima_entrada">Corrente máxima de entrada (A):</label>

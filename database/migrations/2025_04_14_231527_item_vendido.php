@@ -43,7 +43,7 @@ return new class extends Migration
             $t->id();
             $t->unsignedBigInteger('funcionario_id');
             $t->unsignedBigInteger('cliente_id');
-            $t->decimal('total', 10, 2);
+            $t->decimal('total', 11, 2);
             $t->timestamps();
             $t->foreign('funcionario_id')->references('id')->on('funcionario')->onDelete('cascade');;
             $t->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');;
@@ -53,8 +53,8 @@ return new class extends Migration
             $t->id();
             $t->unsignedBigInteger('item_id');
             $t->unsignedBigInteger('venda_id');
-            $t->decimal('desconto', 10, 2)->nullable();
-            $t->decimal('promocao', 10, 2)->nullable();
+            $t->decimal('desconto', 11, 2)->nullable();
+            $t->decimal('promocao', 11, 2)->nullable();
             $t->timestamps();
             $t->foreign('item_id')->references('id')->on('item')->onDelete('cascade')->onDelete('cascade');;
             $t->foreign('venda_id')->references('id')->on('venda')->onDelete('cascade')->onDelete('cascade');;

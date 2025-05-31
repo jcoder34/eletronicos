@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <div class="container-big">
+    <div class="container">
         <div class="header">
             <h1>Itens</h1>
             <a href="{{ route('item.create') }}" class="btn">Cadastrar Item</a>
@@ -34,7 +34,7 @@
                             <form action="{{ route('item.destroy', $item) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')                                
-                                <button type="button" class="btn-excluir link red" data-nome="item">Excluir</button>
+                                <button type="button" class="btn-excluir link red">Excluir</button>
                             </form>
                         </td>
                     </tr>

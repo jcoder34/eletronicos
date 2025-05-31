@@ -7,6 +7,18 @@ use App\Models\Funcionario;
 
 class FuncionarioController extends Controller
 {
+    private $validation_fields = [
+        'nome' => 'required|string|max:50',
+        'cpf' => 'nullable|string|max:11|min:11',
+        'cep' => 'nullable|string|max:8|min:8',
+        'rua' => 'nullable|string|max:64',
+        'bairro' => 'nullable|string|max:64',
+        'numero' => 'nullable|string|max:5',
+        'telefone' => 'nullable|string|max:11',
+        'email' => 'nullable|email',
+        'data_nascimento' => 'nullable|date'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -29,46 +41,56 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        $funcionario = new Funcionario([
-            'nome' => $request->input('nome'),
-            'telefone' => $request->input('telefone'),
-            'email' => $request->input('email')
-        ]);
+        $data = $request->validate($this->validation_fields);
 
-        $funcionario->save();
+        $funcionario = Funcionario::create($data);
 
-        return redirect()->route('funcionario.index');
+        return redirect()->route('funcionario.show', $funcionario)
+                         ->with('success', 'Funcionário cadastrado com sucesso.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $funcionario = Funcionario::findOrFail($id);
+        return view('funcionario.show', ['funcionario' => $funcionario]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $funcionario = Funcionario::findOrFail($id);
+        return view('funcionario.edit', compact('funcionario'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $funcionario = Funcionario::findOrFail($id);
+        $data = $request->validate($this->validation_fields);
+
+        $funcionario->update($data);
+
+        return redirect()->route('funcionario.show', $funcionario)
+                         ->with('success', 'Cadastro do funcionário atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $funcionario = Funcionario::findOrFail($id);
+
+        $funcionario->delete();
+
+        return redirect()->route('funcionario.index')
+                         ->with('success', 'Funcionário excluído com sucesso.');
     }
 }

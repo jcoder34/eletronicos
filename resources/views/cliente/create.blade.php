@@ -1,11 +1,17 @@
-<body>
+<x-layouts.app>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    </head>
     <div class="container">
         <h1>Novo Cliente</h1>
+
         <form action="{{ route('cliente.store') }}" method="POST">
             @csrf
+
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome" maxlength="50" />
+                @error('nome') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="cpf">CPF:</label>
@@ -29,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone:</label>
-                <input type="tel" name="telefone" pattern="\d{2} 9?\d{4}-\d{4}" />
+                <input type="tel" name="telefone" /><!--pattern="\d{2} 9?\d{4}-\d{4}"--> 
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -39,8 +45,11 @@
                 <label for="data_nascimento">Data de nascimento:</label>
                 <input type="date" name="data_nascimento" />
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="{{ route('cliente.index') }}" class="btn btn-secondary">Cancelar</a>
+
+            <div class="form-actions">
+                <button type="submit">Salvar</button>
+                <a href="{{ route('cliente.index') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
         </form>
     </div>
-</body>
+</x-layouts.app>

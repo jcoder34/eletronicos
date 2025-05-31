@@ -89,6 +89,56 @@
                             {{ __('Novo') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
+
+                    <flux:navlist.group
+                        heading="Clientes"
+                        expandable
+                        :expanded="request()->routeIs('cliente.*')"
+                        class="mt-4">
+                        
+                        <flux:navlist.item
+                            icon="list-bullet"
+                            :href="route('cliente.index')"
+                            :current="request()->routeIs('cliente.index')"
+                            wire:navigate
+                        >
+                            {{ __('Listar') }}
+                        </flux:navlist.item>
+
+                        <flux:navlist.item
+                            icon="plus-circle"
+                            :href="route('cliente.create')"
+                            :current="request()->routeIs('cliente.create')"
+                            wire:navigate
+                        >
+                            {{ __('Novo') }}
+                        </flux:navlist.item>
+                    </flux:navlist.group>
+
+                    <flux:navlist.group
+                        heading="Funcionários"
+                        expandable
+                        :expanded="request()->routeIs('funcionario.*')"
+                        class="mt-4">
+                        
+                        <flux:navlist.item
+                            icon="list-bullet"
+                            :href="route('funcionario.index')"
+                            :current="request()->routeIs('funcionario.index')"
+                            wire:navigate
+                        >
+                            {{ __('Listar') }}
+                        </flux:navlist.item>
+
+                        <flux:navlist.item
+                            icon="plus-circle"
+                            :href="route('funcionario.create')"
+                            :current="request()->routeIs('funcionario.create')"
+                            wire:navigate
+                        >
+                            {{ __('Novo') }}
+                        </flux:navlist.item>
+                    </flux:navlist.group>
                     
                 </flux:navlist.group>
             </flux:navlist>

@@ -23,8 +23,13 @@ return new class extends Migration
             $t->string('codigo', 30)->index()->unique();
             $t->text('nome');
             $t->integer('potencia')->nullable();
+            $t->float('consumo')->nullable();
             $t->integer('voltagem_minima')->nullable();
             $t->integer('voltagem_maxima')->nullable();
+            $t->integer('largura')->nullable();
+            $t->integer('altura')->nullable();
+            $t->integer('profundidade')->nullable();
+            $t->float('peso')->nullable();
             $t->float('corrente_maxima_entrada', 5, 2)->nullable();
             $t->timestamps();
             $t->foreign('marca_id')->references('id')->on('marca')->onDelete('cascade');;

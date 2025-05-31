@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Venda;
+use App\Models\Funcionario;
+use App\Models\Cliente;
 
 class VendaController extends Controller
 {
+    private $validation_fields = [
+        'funcionario_id' => 'required|exists:funcionario,id',
+        'cliente_id' => 'required|exists:cliente,id',
+        'total' => 'required|decimal:2'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +29,10 @@ class VendaController extends Controller
      */
     public function create()
     {
-        return view('venda.create');
+        $clientes = Cliente::all();
+        $funcionarios = Funcionario::all();
+
+        return view('venda.create', compact('clientes', 'funcionarios'));
     }
 
     /**
@@ -29,46 +40,59 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        $venda = new Venda([
-            'funcionario' => $request->input('funcionario'),
-            'cliente' => $request->input('cliente'),
-            'total' => $request->input('total')
-        ]);
+        $data = $request->validate($this->validation_fields);
 
-        $venda->save();
+        $venda = Venda::create($data);
 
-        return redirect()->route('venda.index');
+        return redirect()
+            ->route('venda.show', $venda)
+            ->with('success', 'Venda registrada com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $venda = Venda::findOrFail($id);
+        return view('venda.show', compact('venda'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $venda = Venda::findOrFail($id);
+        $clientes = Cliente::all();
+        $funcionarios = Funcionario::all();
+
+        return view('venda.edit', compact('clientes', 'funcionarios'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $venda = Venda::findOrFail($id);
+        $data = $request->validate($this->validation_fields);
+
+        $venda->update($data);
+
+        return redirect()->route('venda.show', $venda)
+                         ->with('success', 'Venda atualizada com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $venda = Venda::findOrFail($id);
+        $venda->delete();
+
+        return redirect()->route('venda.index')
+                         ->with('success', 'Venda excluída com sucesso.');
     }
 }

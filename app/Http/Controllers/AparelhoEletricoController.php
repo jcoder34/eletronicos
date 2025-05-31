@@ -9,6 +9,21 @@ use App\Models\Marca;
 
 class AparelhoEletricoController extends Controller
 {
+    private $validation_fields = [
+        'marca_id' => 'required|exists:marca,id',
+        'codigo' => 'required|string|max:30',
+        'nome' => 'required|string',
+        'potencia' => 'nullable|integer|gte:0',
+        'consumo' => 'nullable',
+        'voltagem_minima' => 'nullable|integer|gte:0',
+        'voltagem_maxima' => 'nullable|integer|gte:0',
+        'largura' => 'nullable|integer|gte:0',
+        'altura' => 'nullable|integer|gte:0',
+        'profundidade' => 'nullable|integer|gte:0',
+        'peso' => 'nullable|integer|gte:0',
+        'corrente_maxima_entrada' => 'nullable'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -33,15 +48,7 @@ class AparelhoEletricoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'marca_id' => 'required|exists:marca,id',
-            'codigo' => 'required|string|max:30',
-            'nome' => 'required|string',
-            'potencia' => 'nullable',
-            'voltagem_minima' => 'nullable',
-            'voltagem_maxima' => 'nullable',
-            'corrente_maxima_entrada' => 'nullable'
-        ]);
+        $data = $request->validate($this->validation_fields);
 
         $aparelho_eletrico = AparelhoEletrico::create($data);
 
@@ -75,15 +82,7 @@ class AparelhoEletricoController extends Controller
     public function update(Request $request, $id)
     {
         $aparelho_eletrico = AparelhoEletrico::findOrFail($id);
-        $data = $request->validate([
-            'marca_id' => 'required',
-            'codigo' => 'required|string|max:30',
-            'nome' => 'required|string',
-            'potencia' => 'nullable',
-            'voltagem_minima' => 'nullable',
-            'voltagem_maxima' => 'nullable',
-            'corrente_maxima_entrada' => 'nullable'
-        ]);
+        $data = $request->validate($this->validation_fields);
 
         $aparelho_eletrico->update($data);
 

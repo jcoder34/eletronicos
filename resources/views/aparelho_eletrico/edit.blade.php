@@ -13,7 +13,7 @@
                 <label for="marca_id">Marca</label><br>
                 <select name="marca_id" id="marca_id" required>
                     @foreach($marcas as $marca)
-                        <option value="{{ $marca->id }}" {{ $marca->marca_id == $marca->id ? 'selected' : '' }}>
+                        <option value="{{ $marca->id }}" {{ $aparelho_eletrico->marca_id == $marca->id ? 'selected' : '' }}>
                             {{ $marca->nome }}
                         </option>
                     @endforeach
@@ -57,6 +57,17 @@
             </div>
 
             <div class="form-group">
+                <label for="consumo">Consumo (KW/h)</label><br>
+                <input
+                    type="number"
+                    name="consumo"
+                    id="consumo"
+                    step="0.001"
+                    value="{{ old('consumo', $aparelho_eletrico->consumo) }}"
+                >
+            </div>
+
+            <div class="form-group">
                 <label for="voltagem_minima">Voltagem Mínima</label><br>
                 <input
                     type="number"
@@ -73,6 +84,46 @@
                     name="voltagem_maxima"
                     id="voltagem_maxima"
                     value="{{ old('voltagem_maxima', $aparelho_eletrico->voltagem_maxima) }}"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="largura">Largura (mm)</label><br>
+                <input
+                    type="number"
+                    name="largura"
+                    id="largura"
+                    value="{{ old('largura', $aparelho_eletrico->largura) }}"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="altura">Altura (mm)</label><br>
+                <input
+                    type="number"
+                    name="altura"
+                    id="altura"
+                    value="{{ old('altura', $aparelho_eletrico->altura) }}"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="profundidade">Profundidade (mm)</label><br>
+                <input
+                    type="number"
+                    name="profundidade"
+                    id="profundidade"
+                    value="{{ old('profundidade', $aparelho_eletrico->profundidade) }}"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="peso">Peso (g)</label><br>
+                <input
+                    type="number"
+                    name="peso"
+                    id="peso"
+                    value="{{ old('peso', $aparelho_eletrico->peso) }}"
                 >
             </div>
 

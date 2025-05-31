@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Marca;
+use App\Models\AparelhoEletrico;
+use App\Models\Item;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,8 +19,54 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'João',
+            'email' => '189146@upf.br',
+            'password' => '123',
+        ]);
+
+        
+        Marca::create([
+            'nome' => 'ELE',
+        ]);
+        Marca::create([
+            'nome' => 'Spin',
+        ]);
+
+        AparelhoEletrico::create([
+            'marca_id' => Marca::where('nome', 'ELE')->first()->id,
+            'codigo' => 'GEL00001',
+            'nome' => 'Geladeira ELE 240L Uma Porta Branca 127v',
+            'voltagem_minima' => 127,
+            'voltagem_maxima' => 127,
+        ]);
+        AparelhoEletrico::create([
+            'marca_id' => Marca::where('nome', 'Spin')->first()->id,
+            'codigo' => 'LIQ00001',
+            'nome' => 'Liquidificador Spin 1000 Preto 3,2L - 220V',
+            'voltagem_minima' => 220,
+            'voltagem_maxima' => 220,
+            'potencia' => 1400,
+            'consumo' => 1.4,
+            'largura' => 215,
+            'altura' =>  422,
+            'profundidade' =>  220,
+            'peso' => 2200,
+        ]);
+        
+        Item::create([
+            'aparelho_eletrico_id' => AparelhoEletrico::where('codigo', 'LIQ00001')->first()->id,
+            'valor' => 309.90,
+            'data' => '2025-05-31',
+        ]);
+        Item::create([
+            'aparelho_eletrico_id' => AparelhoEletrico::where('codigo', 'LIQ00001')->first()->id,
+            'valor' => 279.99,
+            'data' => '2025-05-31',
+        ]);
+        Item::create([
+            'aparelho_eletrico_id' => AparelhoEletrico::where('codigo', 'GEL00001')->first()->id,
+            'valor' => 2049.89,
+            'data' => '2025-03-05',
         ]);
     }
 }

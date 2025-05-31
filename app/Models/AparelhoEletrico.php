@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class AparelhoEletrico extends Model
 {
-    protected $fillable = ['marca_id', 'codigo', 'nome', 'potencia',
-                           'voltagem_minima', 'voltagem_maxima',
+    protected $fillable = ['marca_id', 'codigo', 'nome', 'potencia', 'consumo',
+                           'voltagem_minima', 'voltagem_maxima', 'largura',
+                           'altura', 'profundidade', 'peso',
                            'corrente_maxima_entrada'];
     
     protected $table = 'aparelho_eletrico';

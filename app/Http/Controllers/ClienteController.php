@@ -7,6 +7,18 @@ use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
+    private $validation_fields = [
+        'nome' => 'required|string|max:50',
+        'cpf' => 'nullable|string|max:11|min:11',
+        'cep' => 'nullable|string|max:8|min:8',
+        'rua' => 'nullable|string|max:64',
+        'bairro' => 'nullable|string|max:64',
+        'numero' => 'nullable|string|max:5',
+        'telefone' => 'nullable|string|max:11',
+        'email' => 'nullable|email',
+        'data_nascimento' => 'nullable|date'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -29,52 +41,56 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = new Cliente([
-            'nome' => $request->input('nome'),
-            'cpf' => $request->input('cpf'),
-            'cep' => $request->input('cep'),
-            'rua' => $request->input('rua'),
-            'bairro' => $request->input('bairro'),
-            'numero' => $request->input('numero'),
-            'telefone' => $request->input('telefone'),
-            'email' => $request->input('email'),
-            'data_nascimento' => $request->input('data_nascimento')
-        ]);
+        $data = $request->validate($this->validation_fields);
+        
+        $cliente = Cliente::create($data);
 
-        $cliente->save();
-
-        return redirect()->route('cliente.index');
+        return redirect()->route('cliente.show', $cliente)
+                         ->with('success', 'Cliente cadastrado com sucesso.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('cliente.show', ['cliente' => $cliente]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('cliente.edit', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        $data = $request->validate($this->validation_fields);
+
+        $cliente->update($data);
+
+        return redirect()->route('cliente.show', $cliente)
+                         ->with('success', 'Cadastro do cliente atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+
+        $cliente->delete();
+
+        return redirect()->route('cliente.index')
+                         ->with('success', 'Cliente excluído com sucesso.');
     }
 }

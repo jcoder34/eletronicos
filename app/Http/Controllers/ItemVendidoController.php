@@ -7,6 +7,13 @@ use App\Models\ItemVendido;
 
 class ItemVendidoController extends Controller
 {
+    private $validation_fields = [
+        'item_id' => 'required|exists:item,id',
+        'venda_id' => 'required|exists:venda,id',
+        'desconto' => 'nullable|decimal:2',
+        'promocao' => 'nullable|decimal:2'
+    ];
+
     /**
      * Display a listing of the resource.
      */

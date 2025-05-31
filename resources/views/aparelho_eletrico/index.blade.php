@@ -17,25 +17,25 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Marca</th>
                     <th>Código</th>
                     <th>Nome</th>
-                    <th>Potência</th>
+                    <th>Marca</th>
+                    <th>Potência (W)</th>
+                    <th>Consumo (KW/h)</th>
                     <th>Voltagem Mínima</th>
                     <th>Voltagem Máxima</th>
-                    <th>Corrente Máxima de Entrada</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($aparelhos_eletricos as $aparelho_eletrico)
                     <tr>
-                        <td>{{ $aparelho_eletrico->marca->nome }}</td>
                         <td>{{ $aparelho_eletrico->codigo }}</td>
                         <td>{{ $aparelho_eletrico->nome }}</td>
+                        <td>{{ $aparelho_eletrico->marca->nome }}</td>
                         <td>{{ $aparelho_eletrico->potencia }}</td>
+                        <td>{{ $aparelho_eletrico->consumo }}</td>
                         <td>{{ $aparelho_eletrico->voltagem_minima }}</td>
                         <td>{{ $aparelho_eletrico->voltagem_maxima }}</td>
-                        <td>{{ $aparelho_eletrico->corrente_maxima_entrada }}</td>
                         <td>
                             <a href="{{ route('aparelho_eletrico.show', $aparelho_eletrico) }}" class="link blue">Ver</a>
                             <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="link yellow">Editar</a>
