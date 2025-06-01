@@ -34,14 +34,12 @@ class DatabaseSeeder extends Seeder
 
         AparelhoEletrico::create([
             'marca_id' => Marca::where('nome', 'ELE')->first()->id,
-            'codigo' => 'GEL00001',
             'nome' => 'Geladeira ELE 240L Uma Porta Branca 127v',
             'voltagem_minima' => 127,
             'voltagem_maxima' => 127,
         ]);
         AparelhoEletrico::create([
             'marca_id' => Marca::where('nome', 'Spin')->first()->id,
-            'codigo' => 'LIQ00001',
             'nome' => 'Liquidificador Spin 1000 Preto 3,2L - 220V',
             'voltagem_minima' => 220,
             'voltagem_maxima' => 220,
@@ -54,17 +52,20 @@ class DatabaseSeeder extends Seeder
         ]);
         
         Item::create([
-            'aparelho_eletrico_id' => AparelhoEletrico::where('codigo', 'LIQ00001')->first()->id,
+            'aparelho_eletrico_id' => AparelhoEletrico::where('nome', 'Liquidificador Spin 1000 Preto 3,2L - 220V')->first()->id,
+            'codigo' => 'LIQ00001',
             'valor' => 309.90,
             'data' => '2025-05-31',
         ]);
         Item::create([
-            'aparelho_eletrico_id' => AparelhoEletrico::where('codigo', 'LIQ00001')->first()->id,
+            'aparelho_eletrico_id' => AparelhoEletrico::where('nome', 'Liquidificador Spin 1000 Preto 3,2L - 220V')->first()->id,
+            'codigo' => 'LIQ00002',
             'valor' => 279.99,
             'data' => '2025-05-31',
         ]);
         Item::create([
-            'aparelho_eletrico_id' => AparelhoEletrico::where('codigo', 'GEL00001')->first()->id,
+            'aparelho_eletrico_id' => AparelhoEletrico::where('nome', 'Geladeira ELE 240L Uma Porta Branca 127v')->first()->id,
+            'codigo' => 'GEL00001',
             'valor' => 2049.89,
             'data' => '2025-03-05',
         ]);

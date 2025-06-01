@@ -12,11 +12,6 @@
             </div>
 
             <div class="card-section">
-                <h2>Código:</h2>
-                <p>{{ $aparelho_eletrico->codigo }}</p>
-            </div>
-
-            <div class="card-section">
                 <h2>Nome:</h2>
                 <p>{{ $aparelho_eletrico->nome }}</p>
             </div>

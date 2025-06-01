@@ -36,7 +36,7 @@
                             :current="request()->routeIs('marca.create')"
                             wire:navigate
                         >
-                            {{ __('Nova') }}
+                            {{ __('Adicionar') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
 
@@ -61,7 +61,7 @@
                             :current="request()->routeIs('aparelho_eletrico.create')"
                             wire:navigate
                         >
-                            {{ __('Novo') }}
+                            {{ __('Adicionar') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
 
@@ -86,7 +86,7 @@
                             :current="request()->routeIs('item.create')"
                             wire:navigate
                         >
-                            {{ __('Novo') }}
+                            {{ __('Adicionar') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
 
@@ -111,7 +111,7 @@
                             :current="request()->routeIs('cliente.create')"
                             wire:navigate
                         >
-                            {{ __('Novo') }}
+                            {{ __('Adicionar') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
 
@@ -136,7 +136,32 @@
                             :current="request()->routeIs('funcionario.create')"
                             wire:navigate
                         >
-                            {{ __('Novo') }}
+                            {{ __('Adicionar') }}
+                        </flux:navlist.item>
+                    </flux:navlist.group>
+
+                    <flux:navlist.group
+                        heading="Vendas"
+                        expandable
+                        :expanded="request()->routeIs('venda.*')"
+                        class="mt-4">
+                        
+                        <flux:navlist.item
+                            icon="list-bullet"
+                            :href="route('venda.index')"
+                            :current="request()->routeIs('venda.index')"
+                            wire:navigate
+                        >
+                            {{ __('Listar') }}
+                        </flux:navlist.item>
+
+                        <flux:navlist.item
+                            icon="plus-circle"
+                            :href="route('venda.create')"
+                            :current="request()->routeIs('venda.create')"
+                            wire:navigate
+                        >
+                            {{ __('Adicionar') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
                     

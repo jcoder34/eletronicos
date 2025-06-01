@@ -21,6 +21,11 @@
                 @error('aparelho_eletrico_id') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
+                <label for="codigo">Código:</label>
+                <input type="text" name="codigo" maxlength="30" required/>
+                @error('codigo') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
                 <label for="valor">Valor:</label>
                 <input type="number" name="valor" step="0.01" required />
                 @error('valor') <span class="error">{{ $message }}</span> @enderror

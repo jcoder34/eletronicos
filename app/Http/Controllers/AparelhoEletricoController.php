@@ -11,7 +11,6 @@ class AparelhoEletricoController extends Controller
 {
     private $validation_fields = [
         'marca_id' => 'required|exists:marca,id',
-        'codigo' => 'required|string|max:30',
         'nome' => 'required|string',
         'potencia' => 'nullable|integer|gte:0',
         'consumo' => 'nullable',

@@ -17,19 +17,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Código</th>
                     <th>Nome</th>
                     <th>Marca</th>
                     <th>Potência (W)</th>
                     <th>Consumo (KW/h)</th>
                     <th>Voltagem Mínima</th>
                     <th>Voltagem Máxima</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($aparelhos_eletricos as $aparelho_eletrico)
                     <tr>
-                        <td>{{ $aparelho_eletrico->codigo }}</td>
                         <td>{{ $aparelho_eletrico->nome }}</td>
                         <td>{{ $aparelho_eletrico->marca->nome }}</td>
                         <td>{{ $aparelho_eletrico->potencia }}</td>

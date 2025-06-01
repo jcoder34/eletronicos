@@ -24,6 +24,7 @@
                     <th>Bairro</th>
                     <th>Telefone</th>
                     <th>Email</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>

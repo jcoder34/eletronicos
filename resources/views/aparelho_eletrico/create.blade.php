@@ -21,11 +21,6 @@
                 @error('marca_id') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="codigo">Código:</label>
-                <input type="text" name="codigo" maxlength="30" required/>
-                @error('codigo') <span class="error">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome" required/>
                 @error('nome') <span class="error">{{ $message }}</span> @enderror

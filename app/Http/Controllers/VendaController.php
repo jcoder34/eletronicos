@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Venda;
 use App\Models\Funcionario;
 use App\Models\Cliente;
+use App\Models\Item;
+use App\Models\ItemVendido;
+
+use Illuminate\Support\Facades\Log;
 
 class VendaController extends Controller
 {
     private $validation_fields = [
         'funcionario_id' => 'required|exists:funcionario,id',
         'cliente_id' => 'required|exists:cliente,id',
-        'total' => 'required|decimal:2'
+        'total' => 'required|decimal:2|gte:0',
+        'itens_id' => 'required|array'
     ];
 
     /**
@@ -20,7 +25,7 @@ class VendaController extends Controller
      */
     public function index()
     {
-        $vendas = Venda::all();
+        $vendas = Venda::with('funcionario', 'cliente')->get();
         return view('venda.index', compact('vendas'));
     }
 
@@ -31,8 +36,10 @@ class VendaController extends Controller
     {
         $clientes = Cliente::all();
         $funcionarios = Funcionario::all();
+        $itens_vendidos = ItemVendido::select('item_id')->pluck('item_id');
+        $itens = Item::all()->whereNotIn('id', $itens_vendidos);
 
-        return view('venda.create', compact('clientes', 'funcionarios'));
+        return view('venda.create', compact('clientes', 'funcionarios', 'itens'));
     }
 
     /**
@@ -43,6 +50,13 @@ class VendaController extends Controller
         $data = $request->validate($this->validation_fields);
 
         $venda = Venda::create($data);
+
+        foreach ($data['itens_id'] as $item) {
+            ItemVendido::create([
+                'item_id' => $item,
+                'venda_id' => $venda->id
+            ]);
+        }
 
         return redirect()
             ->route('venda.show', $venda)
@@ -79,7 +93,7 @@ class VendaController extends Controller
         $data = $request->validate($this->validation_fields);
 
         $venda->update($data);
-
+        
         return redirect()->route('venda.show', $venda)
                          ->with('success', 'Venda atualizada com sucesso.');
     }

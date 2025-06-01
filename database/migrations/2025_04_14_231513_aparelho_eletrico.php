@@ -20,7 +20,6 @@ return new class extends Migration
         Schema::create('aparelho_eletrico', function (Blueprint $t) {
             $t->id();
             $t->unsignedBigInteger('marca_id');
-            $t->string('codigo', 30)->index()->unique();
             $t->text('nome');
             $t->integer('potencia')->nullable();
             $t->float('consumo')->nullable();
@@ -32,7 +31,7 @@ return new class extends Migration
             $t->float('peso')->nullable();
             $t->float('corrente_maxima_entrada', 5, 2)->nullable();
             $t->timestamps();
-            $t->foreign('marca_id')->references('id')->on('marca')->onDelete('cascade');;
+            $t->foreign('marca_id')->references('id')->on('marca')->onUpdate('cascade');;
         });
     }
 

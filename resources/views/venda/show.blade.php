@@ -12,11 +12,6 @@
             </div>
 
             <div class="card-section">
-                <h2>Código:</h2>
-                <p>{{ $item->codigo }}</p>
-            </div>
-
-            <div class="card-section">
                 <h2>Valor:</h2>
                 <p>{{ $item->valor }}</p>
             </div>

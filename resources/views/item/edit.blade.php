@@ -23,6 +23,19 @@
             </div>
 
             <div class="form-group">
+                <label for="codigo">Código</label><br>
+                <input
+                    type="text"
+                    name="codigo"
+                    id="codigo"
+                    maxlength="30"
+                    value="{{ old('codigo', $item->codigo) }}"
+                    required
+                >
+                @error('codigo') <span class="error">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="valor">Valor</label><br>
                 <input
                     type="number"
