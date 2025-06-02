@@ -16,6 +16,7 @@ return new class extends Migration
             $t->unsignedBigInteger('aparelho_eletrico_id');
             $t->string('codigo', 30)->index()->unique();
             $t->decimal('valor', 11, 2);
+            $t->decimal('preco_venda', 11, 2);
             $t->date('data');
             $t->timestamps();
             $t->foreign('aparelho_eletrico_id')->references('id')->on('aparelho_eletrico')->onUpdate('cascade');;

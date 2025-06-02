@@ -1,0 +1,1 @@
+Fazer a inclusão de imagens nos aparelhos elétricos, salvar a imagem no public e o caminho no banco de dados.

@@ -44,7 +44,7 @@
                     @if (is_array(old('itens_id')))
                         <option value="{{ $item->id }}"
                         @foreach(old('itens_id') as $i)
-                            @if($item->id == $i->id) selected="selected"
+                            @if($item->id == $i) selected="selected"
                             @endif
                         @endforeach
                         >{{ $item->codigo }}</option>
