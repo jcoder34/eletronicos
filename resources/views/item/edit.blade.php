@@ -36,16 +36,27 @@
             </div>
 
             <div class="form-group">
-                <label for="valor">Valor</label><br>
+                <label for="valor">Preço de venda</label><br>
+                <input
+                    type="number"
+                    name="preco_venda"
+                    id="preco_venda"
+                    step="0.01" 
+                    value="{{ old('preco_venda', $item->preco_venda) }}"
+                    required
+                >
+                @error('preco_venda') <span class="error">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor do item</label><br>
                 <input
                     type="number"
                     name="valor"
                     id="valor"
                     step="0.01" 
                     value="{{ old('valor', $item->valor) }}"
-                    required
                 >
-                @error('valor') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">

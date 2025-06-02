@@ -7,7 +7,7 @@
 
         <div class="card">
             <div class="card-section">
-                <h2>Aparelho Elétrico:</h2>
+                <h2>Aparelho elétrico:</h2>
                 <p>{{ $item->aparelho_eletrico->nome }}</p>
             </div>
 
@@ -17,7 +17,12 @@
             </div>
 
             <div class="card-section">
-                <h2>Valor:</h2>
+                <h2>Preço de venda:</h2>
+                <p>{{ $item->preco_venda }}</p>
+            </div>
+
+            <div class="card-section">
+                <h2>Valor do item:</h2>
                 <p>{{ $item->valor }}</p>
             </div>
     

@@ -36,10 +36,8 @@ class VendaController extends Controller
     {
         $clientes = Cliente::all();
         $funcionarios = Funcionario::all();
-        $itens_vendidos = ItemVendido::select('item_id')->pluck('item_id');
-        $itens = Item::all()->whereNotIn('id', $itens_vendidos);
 
-        return view('venda.create', compact('clientes', 'funcionarios', 'itens'));
+        return view('venda.create', compact('clientes', 'funcionarios'));
     }
 
     /**

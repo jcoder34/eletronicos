@@ -11,7 +11,8 @@ class ItemController extends Controller
     private $validation_fields = [
         'aparelho_eletrico_id' => 'required',
         'codigo' => 'required|string|max:30',
-        'valor' => 'required|decimal:2|gte:0',
+        'preco_venda' => 'required|decimal:2|gte:0',
+        'valor' => 'decimal:2|gte:0',
         'data' => 'required|date'
     ];
 

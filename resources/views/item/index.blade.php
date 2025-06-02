@@ -19,7 +19,7 @@
                 <tr>
                     <th>Código</th>
                     <th>Aparelho Elétrico</th>
-                    <th>Valor</th>
+                    <th>Preço</th>
                     <th>Data</th>
                     <th>Ações</th>
                 </tr>
@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{ $item->codigo }}</td>
                         <td>{{ $item->aparelho_eletrico->nome }}</td>
-                        <td>{{ $item->valor }}</td>
+                        <td>{{ $item->preco_venda }}</td>
                         <td>{{ $item->data }}</td>
                         <td>
                             <a href="{{ route('item.show', $item) }}" class="link blue">Ver</a>

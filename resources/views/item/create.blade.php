@@ -26,9 +26,13 @@
                 @error('codigo') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="valor">Valor:</label>
-                <input type="number" name="valor" step="0.01" required />
-                @error('valor') <span class="error">{{ $message }}</span> @enderror
+                <label for="preco_venda">Preço de venda:</label>
+                <input type="number" name="preco_venda" step="0.01" required />
+                @error('preco_venda') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="valor">Valor do item:</label>
+                <input type="number" name="valor" step="0.01" />
             </div>
             <div class="form-group">
                 <label for="data">Data:</label>

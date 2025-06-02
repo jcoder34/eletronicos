@@ -32,29 +32,8 @@
                 </select>
                 @error('cliente_id') <span class="error">{{ $message }}</span> @enderror
             </div>
-            <div class="form-group">
-                <label for="total">Total:</label>
-                <input type="number" name="total" step="0.01" required />
-                @error('total') <span class="error">{{ $message }}</span> @enderror
-            </div>
             
-            <div class="form-group">
-                <select multiple="multiple" name="itens_id[]" id="itens_id">
-                @foreach($itens as $item) 
-                    @if (is_array(old('itens_id')))
-                        <option value="{{ $item->id }}"
-                        @foreach(old('itens_id') as $i)
-                            @if($item->id == $i->id) selected="selected"
-                            @endif
-                        @endforeach
-                        >{{ $item->codigo }}</option>
-                    @else
-                        <option value="{{ $item->id }}">{{ $item->codigo }}</option>
-                    @endif
-                @endforeach
-                </select>
-                @error('itens_id') <span class="error">{{ $message }}</span> @enderror
-            </div>
+            @livewire('selecionar-itens')
 
             <div class="form-actions">
                 <button type="submit">Salvar</button>
