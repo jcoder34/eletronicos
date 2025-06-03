@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ItemVendido extends Model
 {
@@ -11,8 +11,8 @@ class ItemVendido extends Model
 
     protected $table = 'item_vendido';
 
-    public function item() : HasOne
+    public function item() : BelongsTo
     {
-        return $this->hasOne(Item::class);
+        return $this->BelongsTo(Item::class);
     }
 }

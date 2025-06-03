@@ -71,8 +71,6 @@ class VendaController extends Controller
         $venda = Venda::findOrFail($id);
         $itens_vendidos = ItemVendido::where('venda_id', $id)->with('item')->get();
 
-        Log::info($itens_vendidos);
-
         return view('venda.show', compact('venda', 'itens_vendidos'));
     }
 

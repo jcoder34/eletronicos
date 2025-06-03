@@ -23,7 +23,7 @@
 
             <div class="card-section">
                 <h2>Horário:</h2>
-                <p>{{ $venda->horario }}</p>
+                <p>{{ $venda->created_at }}</p>
             </div>
 
             <div class="card-section">
@@ -40,10 +40,10 @@
                     <tbody>
                         @foreach ($itens_vendidos as $item_vendido)
                             <tr>
-                                <td>$item_vendido->item->codigo</td>
-                                <td>$item_vendido->desconto</td>
-                                <td>$item_vendido->promocao</td>
-                                <td>$item_vendido->item->preco_venda</td>
+                                <td>{{ $item_vendido->item->codigo }}</td>
+                                <td>{{ $item_vendido->desconto }}</td>
+                                <td>{{ $item_vendido->promocao }}</td>
+                                <td>{{ $item_vendido->item->preco_venda }}</td>
                             </tr>
                         @endforeach
                     </tbody>

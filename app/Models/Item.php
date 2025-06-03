@@ -10,8 +10,8 @@ class Item extends Model
 
     protected $table = 'item';    
     
-    public function aparelho_eletrico()
-    {
-        return $this->belongsTo(AparelhoEletrico::class);
-    }
+    //public function aparelho_eletrico() : BelongsTo
+    //{
+    //    return $this->belongsTo(AparelhoEletrico::class);
+    //}
 }
