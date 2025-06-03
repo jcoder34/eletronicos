@@ -20,7 +20,7 @@
                 <input type="number" name="promocao" />
             </div>
             <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="{{ route('item_vendido.index') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ route('item_vendido.index') }}" class="btn gray">Cancelar</a>
         </form>
     </div>
 </body>

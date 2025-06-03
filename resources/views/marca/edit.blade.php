@@ -23,7 +23,7 @@
 
             <div class="form-actions">
                 <button type="submit">Atualizar</button>
-                <a href="{{ route('marca.show', $marca) }}">Cancelar</a>
+                <a href="{{ route('marca.show', $marca) }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>

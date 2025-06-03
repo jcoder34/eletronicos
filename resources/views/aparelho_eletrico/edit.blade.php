@@ -127,7 +127,7 @@
 
             <div class="form-group">
                 <button type="submit">Atualizar</button>
-                <a href="{{ route('aparelho_eletrico.show', $aparelho_eletrico) }}">Cancelar</a>
+                <a href="{{ route('aparelho_eletrico.show', $aparelho_eletrico) }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>

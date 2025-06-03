@@ -58,7 +58,7 @@
 
             <div class="form-actions">
                 <button type="submit">Salvar</button>
-                <a href="{{ route('venda.index') }}" class="btn btn-secondary">Cancelar</a>
+                <a href="{{ route('venda.index') }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>

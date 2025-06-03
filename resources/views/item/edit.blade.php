@@ -62,7 +62,7 @@
 
             <div class="form-group">
                 <button type="submit">Atualizar</button>
-                <a href="{{ route('item.show', $item) }}">Cancelar</a>
+                <a href="{{ route('item.show', $item) }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>

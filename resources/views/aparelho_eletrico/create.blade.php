@@ -64,7 +64,7 @@
 
             <div class="form-actions">
                 <button type="submit">Salvar</button>
-                <a href="{{ route('aparelho_eletrico.index') }}" class="btn btn-secondary">Cancelar</a>
+                <a href="{{ route('aparelho_eletrico.index') }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>
