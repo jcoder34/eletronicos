@@ -49,14 +49,34 @@ class VendaController extends Controller
     {
         $data = $request->validate($this->validation_fields);
 
+        $itens_id = $data['itens_id'];
+        $desconto = array();
+        $promocao = array();
+        $total = 0;
+
+        foreach ($itens_id as $item_id) {
+            $item = Item::find($item_id);
+            
+            $desconto[$item_id] = $request['desconto_'.$item_id];
+            $promocao[$item_id] = $request['promocao_'.$item_id];
+
+            $total += ($item->preco_venda - ((array_key_exists($item_id, $promocao) and $promocao[$item_id] != '') ?
+                                             ($item->preco_venda * $promocao[$item_id] / 100) : 0)) -
+                       ((array_key_exists($item_id, $desconto) and $desconto[$item_id] != '') ?  $desconto[$item_id] : 0);
+
+        }
+
+        $data['total'] = $total;
+
         $venda = Venda::create($data);
 
-        foreach ($data['itens_id'] as $item) {
+        foreach ($itens_id as $item_id)
             ItemVendido::create([
-                'item_id' => $item,
-                'venda_id' => $venda->id
+                'item_id' => $item_id,
+                'venda_id' => $venda->id,
+                'desconto' => (array_key_exists($item_id, $desconto) and $desconto[$item_id] != '')? $desconto[$item_id] : null, 
+                'promocao' => (array_key_exists($item_id, $promocao) and $promocao[$item_id] != '')? $promocao[$item_id] : null
             ]);
-        }
 
         return redirect()
             ->route('venda.show', $venda)
@@ -82,8 +102,11 @@ class VendaController extends Controller
         $venda = Venda::findOrFail($id);
         $clientes = Cliente::all();
         $funcionarios = Funcionario::all();
-
-        return view('venda.edit', compact('clientes', 'funcionarios'));
+        $itens_vendidos = ItemVendido::select('item_id')->pluck('item_id')->toArray();
+        $itens_id = ItemVendido::select('item_id')->where('venda_id', $venda->id)->pluck('item_id')->toArray();
+        $itens = Item::all()->whereNotIn('id', array_diff($itens_vendidos, $itens_id));
+        
+        return view('venda.edit', compact('venda', 'clientes', 'funcionarios', 'itens', 'itens_id'));
     }
 
     /**
@@ -92,10 +115,40 @@ class VendaController extends Controller
     public function update(Request $request, $id)
     {
         $venda = Venda::findOrFail($id);
+
         $data = $request->validate($this->validation_fields);
 
-        $venda->update($data);
+        $itens_id = $data['itens_id'];
+        if (is_array($itens_id)) {
+            $desconto = array();
+            $promocao = array();
+            $total = 0;
         
+            foreach ($itens_id as $item_id) {
+                $item = Item::find($item_id);
+                
+                $desconto[$item_id] = $request['desconto_'.$item_id];
+                $promocao[$item_id] = $request['promocao_'.$item_id];
+
+                $total += ($item->preco_venda - ((array_key_exists($item_id, $promocao) and $promocao[$item_id] != '') ?
+                                                 ($item->preco_venda * $promocao[$item_id] / 100) : 0)) -
+                           ((array_key_exists($item_id, $desconto) and $desconto[$item_id] != '') ?  $desconto[$item_id] : 0);
+
+                ItemVendido::create([
+                    'item_id' => $item_id,
+                    'venda_id' => $venda->id,
+                    'desconto' => (array_key_exists($item_id, $desconto) and $desconto[$item_id] != '')? $desconto[$item_id] : null, 
+                    'promocao' => (array_key_exists($item_id, $promocao) and $promocao[$item_id] != '')? $promocao[$item_id] : null
+                ]);
+            }
+            
+            $data['total'] = $total;
+        } else {
+            unset($data['total']);
+        }
+
+        $venda->update($data);
+
         return redirect()->route('venda.show', $venda)
                          ->with('success', 'Venda atualizada com sucesso.');
     }

@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Marca;
 use App\Models\AparelhoEletrico;
 use App\Models\Item;
+use App\Models\Cliente;
+use App\Models\Funcionario;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -71,6 +73,13 @@ class DatabaseSeeder extends Seeder
             'preco_venda' => 2049.89,
             'valor' => 2049.89,
             'data' => '2025-03-05',
+        ]);
+
+        Funcionario::create([
+            'nome' => 'João'
+        ]);
+        Cliente::create([
+            'nome' => 'Fulano'
         ]);
     }
 }
