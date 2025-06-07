@@ -56,7 +56,7 @@
 
             <div class="form-actions">
                 <button type="submit">Salvar</button>
-                <a href="{{ route('venda.index') }}" class="btn btn-secondary">Cancelar</a>
+                <a href="{{ route('venda.index') }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>
@@ -93,7 +93,7 @@ function selectItens() {
         <input onchange=\"desconto(this)\" type=\"number\" name=\"desconto_"+ current.value + "\" step=\"0.01\" data-item_id=\""+current.value+"\"/>\
         \
         <label for=\"promocao_" + current.value + "\">Promoção para " + current.dataset.codigo + ":</label>\
-        <input onchange=\"promocao(this)\" type=\"number\" name=\"promocao_"+ current.value + "\" step=\"0.01\" data-item_id=\""+current.value+"\"/>\
+        <input onchange=\"promocao(this)\" type=\"number\" name=\"promocao_"+ current.value + "\" step=\"0.01\" max=\"100\" data-item_id=\""+current.value+"\"/>\
         ", "")
 }
 

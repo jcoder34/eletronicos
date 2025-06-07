@@ -17,7 +17,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nome</th>
                     <th>Ações</th>
                 </tr>
@@ -25,10 +24,8 @@
             <tbody>
                 @forelse ($marcas as $marca)
                     <tr>
-                        <td>{{ $marca->id }}</td>
                         <td>{{ $marca->nome }}</td>
                         <td>
-                            <a href="{{ route('marca.show', $marca) }}" class="link blue">Ver</a>
                             <a href="{{ route('marca.edit', $marca) }}" class="link yellow">Editar</a>
                             <form action="{{ route('marca.destroy', $marca) }}" method="POST" class="inline">
                                 @csrf

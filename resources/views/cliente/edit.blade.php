@@ -109,7 +109,7 @@
 
             <div class="form-actions">
                 <button type="submit">Atualizar</button>
-                <a href="{{ route('cliente.show', $cliente) }}">Cancelar</a>
+                <a href="{{ route('cliente.show', $cliente) }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>
