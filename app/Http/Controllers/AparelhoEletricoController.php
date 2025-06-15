@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class AparelhoEletricoController extends Controller
 {
     private $validation_fields = [
-        'marca_id' => 'required|exists:marca,id',
+        'marca_id' => 'exists:marca,id',
         'nome' => 'required|string',
         'potencia' => 'nullable|integer|gte:0',
         'consumo' => 'nullable',

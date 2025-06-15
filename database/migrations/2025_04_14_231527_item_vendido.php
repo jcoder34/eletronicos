@@ -55,7 +55,6 @@ return new class extends Migration
             $t->unsignedBigInteger('venda_id');
             $t->decimal('desconto', 11, 2)->nullable();
             $t->decimal('promocao', 11, 2)->nullable();
-            $t->timestamps();
             $t->foreign('item_id')->references('id')->on('item')->onDelete('cascade')->onUpdate('cascade');;
             $t->foreign('venda_id')->references('id')->on('venda')->onDelete('cascade')->onUpdate('cascade');;
         });

@@ -19,8 +19,8 @@ return new class extends Migration
 
         Schema::create('aparelho_eletrico', function (Blueprint $t) {
             $t->id();
-            $t->unsignedBigInteger('marca_id');
-            $t->text('nome');
+            $t->unsignedBigInteger('marca_id')->nullable();
+            $t->text('nome')->unique();
             $t->integer('potencia')->nullable();
             $t->float('consumo')->nullable();
             $t->integer('voltagem_minima')->nullable();
