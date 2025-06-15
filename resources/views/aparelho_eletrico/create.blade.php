@@ -5,7 +5,7 @@
     <div class="container">
         <h1>Novo Aparelho Elétrico</h1>
         
-        <form action="{{ route('aparelho_eletrico.store') }}" method="POST">
+        <form action="{{ route('aparelho_eletrico.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
         
             <div class="form-group">
@@ -60,6 +60,10 @@
             <div class="form-group">
                 <label for="corrente_maxima_entrada">Corrente máxima de entrada (A):</label>
                 <input type="number" name="corrente_maxima_entrada" step="0.01"/>
+            </div>
+            <div class="form-group">
+                <label for="imagem">Foto do produto:</label>
+                <input type="file" name="imagem" id="imagem" />
             </div>
 
             <div class="form-actions">

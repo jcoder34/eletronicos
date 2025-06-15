@@ -30,6 +30,7 @@ return new class extends Migration
             $t->integer('profundidade')->nullable();
             $t->float('peso')->nullable();
             $t->float('corrente_maxima_entrada', 5, 2)->nullable();
+            $t->text('imagem')->nullable();
             $t->timestamps();
             $t->foreign('marca_id')->references('id')->on('marca')->onUpdate('cascade');;
         });

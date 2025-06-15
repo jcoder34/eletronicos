@@ -60,6 +60,13 @@
                 <h2>Corrente Máxima de Entrada (A):</h2>
                 <p>{{ $aparelho_eletrico->corrente_maxima_entrada ?? '-' }}</p>
             </div>
+            
+            @if ($aparelho_eletrico->imagem)
+            <div class="card-section"> 
+                <h2>Foto do Produto:</h2>
+                <img src="{{ asset( 'storage/' . $aparelho_eletrico->imagem ) }}" width="200" />
+            </div>
+            @endif
 
             <div class="form-actions">
                 <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="btn yellow">Editar</a>

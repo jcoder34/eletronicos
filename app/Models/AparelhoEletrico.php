@@ -9,7 +9,7 @@ class AparelhoEletrico extends Model
     protected $fillable = ['marca_id', 'nome', 'potencia', 'consumo',
                            'voltagem_minima', 'voltagem_maxima', 'largura',
                            'altura', 'profundidade', 'peso',
-                           'corrente_maxima_entrada'];
+                           'corrente_maxima_entrada', 'imagem'];
     
     protected $table = 'aparelho_eletrico';
     

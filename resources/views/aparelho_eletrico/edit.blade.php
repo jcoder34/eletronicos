@@ -5,7 +5,7 @@
     <div class="container">
         <h1>Editar Aparelho Elétrico</h1>
 
-        <form action="{{ route('aparelho_eletrico.update', $aparelho_eletrico) }}" method="POST">
+        <form action="{{ route('aparelho_eletrico.update', $aparelho_eletrico) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -124,6 +124,15 @@
                     value="{{ old('corrente_maxima_entrada', $aparelho_eletrico->corrente_maxima_entrada) }}"
                 >
             </div>
+
+            <div class="form-group">
+                <label for="imagem">Foto do Produto</label>
+                <input type="file" name="imagem" id="imagem" />
+            </div>
+
+            @if ($aparelho_eletrico->imagem)
+                <img src="{{ asset('storage/' . $aparelho_eletrico->imagem) }}" width="200" />
+            @endif
 
             <div class="form-group">
                 <button type="submit">Atualizar</button>

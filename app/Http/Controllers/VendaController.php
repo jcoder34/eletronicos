@@ -9,8 +9,6 @@ use App\Models\Cliente;
 use App\Models\Item;
 use App\Models\ItemVendido;
 
-use Illuminate\Support\Facades\Log;
-
 class VendaController extends Controller
 {
     private $validation_fields = [

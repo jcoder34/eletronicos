@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\AparelhoEletrico;
 use App\Models\Marca;
 
+use Illuminate\Support\Facades\Storage;
+
 class AparelhoEletricoController extends Controller
 {
     private $validation_fields = [
@@ -20,7 +22,9 @@ class AparelhoEletricoController extends Controller
         'altura' => 'nullable|integer|gte:0',
         'profundidade' => 'nullable|integer|gte:0',
         'peso' => 'nullable|integer|gte:0',
-        'corrente_maxima_entrada' => 'nullable'
+        'corrente_maxima_entrada' => 'nullable',
+        # Arquivos de até 2 MB.
+        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
     ];
 
     /**
@@ -48,6 +52,11 @@ class AparelhoEletricoController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->validation_fields);
+
+        if ($request->hasFile('imagem')) {
+            $path = $request->file('imagem')->store('aparelho_eletrico');
+            $data['imagem'] = $path;
+        }
 
         $aparelho_eletrico = AparelhoEletrico::create($data);
 
@@ -81,8 +90,16 @@ class AparelhoEletricoController extends Controller
     public function update(Request $request, $id)
     {
         $aparelho_eletrico = AparelhoEletrico::findOrFail($id);
+        
         $data = $request->validate($this->validation_fields);
-
+        
+        if ($request->hasFile('imagem')) {
+            if ($aparelho_eletrico->imagem)
+                Storage::delete($aparelho_eletrico->imagem);
+            $path = $request->file('imagem')->store('aparelho_eletrico');
+            $data['imagem'] = $path;
+        }
+        
         $aparelho_eletrico->update($data);
 
         return redirect()->route('aparelho_eletrico.show', $aparelho_eletrico)
@@ -95,6 +112,10 @@ class AparelhoEletricoController extends Controller
     public function destroy($id)
     {
         $aparelho_eletrico = AparelhoEletrico::all()->findOrFail($id);
+        
+        if ($aparelho_eletrico->imagem)
+            Storage::delete($aparelho_eletrico->imagem);
+
         $aparelho_eletrico->delete();
 
         return redirect()->route('aparelho_eletrico.index')
