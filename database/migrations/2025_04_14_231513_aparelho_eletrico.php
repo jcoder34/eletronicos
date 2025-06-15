@@ -32,7 +32,7 @@ return new class extends Migration
             $t->float('corrente_maxima_entrada', 5, 2)->nullable();
             $t->text('imagem')->nullable();
             $t->timestamps();
-            $t->foreign('marca_id')->references('id')->on('marca')->onUpdate('cascade');;
+            $t->foreign('marca_id')->references('id')->on('marca')->onUpdate('cascade')->onDelete('SET NULL');
         });
     }
 

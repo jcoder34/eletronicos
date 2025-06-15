@@ -8,12 +8,12 @@
         <div class="card">
             <div class="card-section">
                 <h2>Funcionário:</h2>
-                <p>{{ $venda->funcionario->nome }}</p>
+                <p>{{ $venda->funcionario->nome ?? '-' }}</p>
             </div>
 
             <div class="card-section">
                 <h2>Cliente:</h2>
-                <p>{{ $venda->cliente->nome }}</p>
+                <p>{{ $venda->cliente->nome ?? '-' }}</p>
             </div>
     
             <div class="card-section">

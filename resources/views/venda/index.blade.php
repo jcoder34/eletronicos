@@ -27,8 +27,8 @@
             <tbody>
                 @forelse ($vendas as $venda)
                     <tr>
-                        <td>{{ $venda->funcionario->nome }}</td>
-                        <td>{{ $venda->cliente->nome }}</td>
+                        <td>{{ $venda->funcionario->nome ?? '-' }}</td>
+                        <td>{{ $venda->cliente->nome ?? '-' }}</td>
                         <td>{{ $venda->total }}</td>
                         <td>{{ $venda->created_at }}</td>
                         <td>

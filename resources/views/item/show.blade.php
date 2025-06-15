@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-section">
                 <h2>Aparelho elétrico:</h2>
-                <p>{{ $item->aparelho_eletrico->nome }}</p>
+                <p>{{ $item->aparelho_eletrico->nome ?? '-' }}</p>
             </div>
 
             <div class="card-section">

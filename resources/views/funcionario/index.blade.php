@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <div class="container-big">
+    <div class="container">
         <div class="header">
             <h1>Funcionários</h1>
             <a href="{{ route('funcionario.create') }}" class="btn">Cadastrar Funcionário</a>
@@ -19,9 +19,6 @@
                 <tr>
                     <th>Nome</th>
                     <th>CPF</th>
-                    <th>CEP</th>
-                    <th>Rua</th>
-                    <th>Bairro</th>
                     <th>Telefone</th>
                     <th>Email</th>
                     <th>Ações</th>
@@ -31,12 +28,9 @@
                 @forelse ($funcionarios as $funcionario)
                     <tr>
                         <td>{{ $funcionario->nome }}</td>
-                        <td>{{ $funcionario->cpf }}</td>
-                        <td>{{ $funcionario->cep }}</td>
-                        <td>{{ $funcionario->rua }}</td>
-                        <td>{{ $funcionario->bairro }}</td>
-                        <td>{{ $funcionario->telefone }}</td>
-                        <td>{{ $funcionario->email }}</td>
+                        <td>{{ $funcionario->cpf ?? '-' }}</td>
+                        <td>{{ $funcionario->telefone ?? '-' }}</td>
+                        <td>{{ $funcionario->email ?? '-' }}</td>
                         <td>
                             <a href="{{ route('funcionario.show', $funcionario) }}" class="link blue">Ver</a>
                             <a href="{{ route('funcionario.edit', $funcionario) }}" class="link yellow">Editar</a>

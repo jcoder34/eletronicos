@@ -30,11 +30,11 @@
                 @forelse ($aparelhos_eletricos as $aparelho_eletrico)
                     <tr>
                         <td>{{ $aparelho_eletrico->nome }}</td>
-                        <td>{{ $aparelho_eletrico->marca->nome }}</td>
-                        <td>{{ $aparelho_eletrico->potencia }}</td>
-                        <td>{{ $aparelho_eletrico->consumo }}</td>
-                        <td>{{ $aparelho_eletrico->voltagem_minima }}</td>
-                        <td>{{ $aparelho_eletrico->voltagem_maxima }}</td>
+                        <td>{{ $aparelho_eletrico->marca->nome ?? '-' }}</td>
+                        <td>{{ $aparelho_eletrico->potencia ?? '-' }}</td>
+                        <td>{{ $aparelho_eletrico->consumo ?? '-' }}</td>
+                        <td>{{ $aparelho_eletrico->voltagem_minima ?? '-' }}</td>
+                        <td>{{ $aparelho_eletrico->voltagem_maxima ?? '-' }}</td>
                         <td>
                             <a href="{{ route('aparelho_eletrico.show', $aparelho_eletrico) }}" class="link blue">Ver</a>
                             <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="link yellow">Editar</a>

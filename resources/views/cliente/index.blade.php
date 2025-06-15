@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <div class="container-big">
+    <div class="container">
         <div class="header">
             <h1>Clientes</h1>
             <a href="{{ route('cliente.create') }}" class="btn">Cadastrar Cliente</a>
@@ -19,9 +19,6 @@
                 <tr>
                     <th>Nome</th>
                     <th>CPF</th>
-                    <th>CEP</th>
-                    <th>Rua</th>
-                    <th>Bairro</th>
                     <th>Telefone</th>
                     <th>Email</th>
                     <th>Ações</th>
@@ -31,12 +28,9 @@
                 @forelse ($clientes as $cliente)
                     <tr>
                         <td>{{ $cliente->nome }}</td>
-                        <td>{{ $cliente->cpf }}</td>
-                        <td>{{ $cliente->cep }}</td>
-                        <td>{{ $cliente->rua }}</td>
-                        <td>{{ $cliente->bairro }}</td>
-                        <td>{{ $cliente->telefone }}</td>
-                        <td>{{ $cliente->email }}</td>
+                        <td>{{ $cliente->cpf ?? '-' }}</td>
+                        <td>{{ $cliente->telefone ?? '-' }}</td>
+                        <td>{{ $cliente->email ?? '-' }}</td>
                         <td>
                             <a href="{{ route('cliente.show', $cliente) }}" class="link blue">Ver</a>
                             <a href="{{ route('cliente.edit', $cliente) }}" class="link yellow">Editar</a>

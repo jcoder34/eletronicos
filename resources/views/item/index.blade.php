@@ -28,7 +28,7 @@
                 @forelse ($itens as $item)
                     <tr>
                         <td>{{ $item->codigo }}</td>
-                        <td>{{ $item->aparelho_eletrico->nome }}</td>
+                        <td>{{ $item->aparelho_eletrico->nome ?? '-' }}</td>
                         <td>{{ $item->preco_venda }}</td>
                         <td>{{ $item->data }}</td>
                         <td>

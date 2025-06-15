@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-section">
                 <h2>Marca:</h2>
-                <p>{{ $aparelho_eletrico->marca->nome }}</p>
+                <p>{{ $aparelho_eletrico->marca->nome ?? '-' }}</p>
             </div>
 
             <div class="card-section">
