@@ -102,11 +102,13 @@ class VendaController extends Controller
         $venda = Venda::findOrFail($id);
         $clientes = Cliente::all();
         $funcionarios = Funcionario::all();
+
         $itens_vendidos = ItemVendido::select('item_id')->pluck('item_id')->toArray();
-        $itens_id = ItemVendido::select('item_id')->where('venda_id', $venda->id)->pluck('item_id')->toArray();
+        $itens_na_venda = ItemVendido::where('venda_id', $venda->id)->get();
+        $itens_id = $itens_na_venda->pluck('item_id')->toArray();
         $itens = Item::all()->whereNotIn('id', array_diff($itens_vendidos, $itens_id));
         
-        return view('venda.edit', compact('venda', 'clientes', 'funcionarios', 'itens', 'itens_id'));
+        return view('venda.edit', compact('venda', 'clientes', 'funcionarios', 'itens', 'itens_na_venda'));
     }
 
     /**
@@ -123,7 +125,9 @@ class VendaController extends Controller
             $desconto = array();
             $promocao = array();
             $total = 0;
-        
+            
+            ItemVendido::where('venda_id', $venda->id)->delete();
+
             foreach ($itens_id as $item_id) {
                 $item = Item::find($item_id);
                 

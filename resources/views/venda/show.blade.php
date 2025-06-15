@@ -28,7 +28,7 @@
 
             <div class="card-section">
                 <h2>Itens Vendidos:</h2>
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{ $item_vendido->item->codigo }}</td>
                                 <td>{{ $item_vendido->desconto }}</td>
-                                <td>{{ $item_vendido->promocao }}</td>
+                                <td>{{ $item_vendido->promocao }}%</td>
                                 <td>{{ $item_vendido->item->preco_venda }}</td>
                             </tr>
                         @endforeach

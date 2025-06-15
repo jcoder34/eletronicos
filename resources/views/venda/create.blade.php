@@ -40,7 +40,7 @@
             </div>
             
             <div class="form-group">
-                <select onchange="selectItens()" multiple="multiple" name="itens_id[]" id="itens_id">
+                <select onchange="itensVendidos.selectItens()" multiple="multiple" name="itens_id[]" id="itens_id">
                 @foreach($itens as $item) 
                     <option value="{{ $item->id }}"
                             data-codigo="{{$item->codigo}}"
@@ -62,4 +62,7 @@
     </div>
     
     <script src="{{ asset('js/venda.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+    const itensVendidos = new ItensVendidos('itensVendidos')
+    </script>
 </x-layouts.app>

@@ -18,7 +18,7 @@
                         </option>
                     @endforeach
                 </select>
-                @error('funcionario_id') <span class="error">{{ $message }}</span> @enderror
+                @error ('funcionario_id') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="cliente_id">Cliente</label>
@@ -29,39 +29,32 @@
                         </option>
                     @endforeach
                 </select>
-                @error('cliente_id') <span class="error">{{ $message }}</span> @enderror
+                @error ('cliente_id') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <label for="total">Total</label>
                 <input type="number" name="total" id="total" step="0.01" value="{{ old('total', $venda->total) }}" required />
-                @error('total') <span class="error">{{ $message }}</span> @enderror
+                @error ('total') <span class="error">{{ $message }}</span> @enderror
             </div>
             
             <div class="form-group">
-                <select onchange="selectItens()" multiple="multiple" name="itens_id[]" id="itens_id">
-                @foreach($itens as $item)
-                    @if (is_array($itens_id))
-                        <option value="{{ $item->id }}"
-                                data-codigo="{{$item->codigo}}"
-                                data-preco_venda="{{$item->preco_venda}}"
-                                @foreach($itens_id as $i)
-                                    @if ($item->id == $i) selected="selected"
-                                    @endif
-                                @endforeach
-                                >
+                <select onchange="itensVendidos.selectItens()" multiple="multiple" name="itens_id[]" id="itens_id">
+                @foreach ($itens as $item)
+                    <option value="{{ $item->id }}"
+                            data-codigo="{{$item->codigo}}"
+                            data-preco_venda="{{$item->preco_venda}}"
+                        @forelse ($itens_na_venda as $i)
+                            @if ($item->id == $i->item_id) selected="selected"
+                            @endif
+                        @empty
+                        @endforelse
+                        > 
                         {{ $item->codigo }}
                         </option>
-                    @else
-                        <option value="{{ $item->id }}"
-                                data-codigo="{{$item->codigo}}"
-                                data-preco_venda="{{$item->preco_venda}}">
-                        {{$item->codigo }}
-                        </option>
-                    @endif
                 @endforeach
                 </select>
-                @error('itens_id') <span class="error">{{ $message }}</span> @enderror
+                @error ('itens_id') <span class="error">{{ $message }}</span> @enderror
             </div>
             
             <div class="form-group" id="descontos"></div>
@@ -74,4 +67,13 @@
     </div>
 
     <script src="{{ asset('js/venda.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+    const itensVendidos = new ItensVendidos('itensVendidos')
+    @forelse ($itens_na_venda as $i)
+        itensVendidos.addDesconto({{ $i->item_id }}, {{ $i->desconto }})
+        itensVendidos.addPromocao({{ $i->item_id }}, {{ $i->promocao }})
+    @empty
+    @endforelse
+    itensVendidos.updateInputs()
+    </script>
 </x-layouts.app>
