@@ -23,7 +23,7 @@ document.querySelectorAll('.btn-excluir').forEach(button => {
                         "success"
                     ).then(() => {
                         form.submit();
-                    });;
+                    });
                 }
             });
         else
@@ -44,7 +44,7 @@ document.querySelectorAll('.btn-excluir').forEach(button => {
                         "success"
                     ).then(() => {
                         form.submit();
-                    });;
+                    });
                 }
             });
     });
