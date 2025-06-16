@@ -12,7 +12,7 @@
             </div>
 
             <div class="form-actions">
-                <a href="{{ route('marca.edit', $marca) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('marca.edit', $marca) }}" class="btn green">Editar</a>
                 <a href="{{ route('marca.index')}}" class="btn gray">Voltar</a>
             </div>
     </div>

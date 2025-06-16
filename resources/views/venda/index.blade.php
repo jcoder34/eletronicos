@@ -33,7 +33,7 @@
                         <td>{{ $venda->created_at }}</td>
                         <td>
                             <a href="{{ route('venda.show', $venda) }}" class="link blue">Ver</a>
-                            <a href="{{ route('venda.edit', $venda) }}" class="link yellow">Editar</a>
+                            <a href="{{ route('venda.edit', $venda) }}" class="link green">Editar</a>
                             <form action="{{ route('venda.destroy', $venda) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')                                
@@ -43,7 +43,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Nenhuma venda registrada.</td>
+                        <td colspan="5" class="text-center">Nenhuma venda registrada.</td>
                     </tr>
                 @endforelse
             </tbody>

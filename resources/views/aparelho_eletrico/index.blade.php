@@ -37,7 +37,7 @@
                         <td>{{ $aparelho_eletrico->voltagem_maxima ?? '-' }}</td>
                         <td>
                             <a href="{{ route('aparelho_eletrico.show', $aparelho_eletrico) }}" class="link blue">Ver</a>
-                            <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="link yellow">Editar</a>
+                            <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="link green">Editar</a>
                             <form action="{{ route('aparelho_eletrico.destroy', $aparelho_eletrico) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')                                
@@ -47,7 +47,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Nenhum aparelho elétrico cadastrado.</td>
+                        <td colspan="7" class="text-center">Nenhum aparelho elétrico cadastrado.</td>
                     </tr>
                 @endforelse
             </tbody>

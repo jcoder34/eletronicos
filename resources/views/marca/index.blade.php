@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{ $marca->nome }}</td>
                         <td>
-                            <a href="{{ route('marca.edit', $marca) }}" class="link yellow">Editar</a>
+                            <a href="{{ route('marca.edit', $marca) }}" class="link green">Editar</a>
                             <form action="{{ route('marca.destroy', $marca) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
@@ -36,7 +36,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Nenhuma marca.</td>
+                        <td colspan="2" class="text-center">Nenhuma marca.</td>
                     </tr>
                 @endforelse
             </tbody>

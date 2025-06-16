@@ -38,10 +38,18 @@ label {
     font-weight: bold;
 }
 
+input[type="file"] {}
+
+input[type="number"] {
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
 input[type="text"],
 select,
 textarea {
-    width: 100%;
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -118,8 +126,13 @@ button[type="submit"]:hover {
     text-align: left;
 }
 
+.table tr:nth-child(even),
 .table th {
     background-color: #f1f1f1;
+}
+
+.table tr:hover {
+    background-color: #ddd;
 }
 
 .link {
@@ -135,8 +148,8 @@ button[type="submit"]:hover {
     color: #007BFF;
 }
 
-.link.yellow {
-    color: #e0a800;
+.link.green {
+    color: #0a5b06;
 }
 
 .link.red {
@@ -179,11 +192,11 @@ button[type="submit"]:hover {
     background-color: #cfcfcf;
 }
 
-.btn.yellow {
-    background-color: #e0a800;
+.btn.green {
+    background-color: #0a5b06;
     color: white;
 }
 
-.btn.yellow:hover {
-    background-color: #c69500;
+.btn.green:hover {
+    background-color: #10d91d;
 }

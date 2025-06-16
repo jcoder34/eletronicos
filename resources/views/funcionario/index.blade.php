@@ -33,7 +33,7 @@
                         <td>{{ $funcionario->email ?? '-' }}</td>
                         <td>
                             <a href="{{ route('funcionario.show', $funcionario) }}" class="link blue">Ver</a>
-                            <a href="{{ route('funcionario.edit', $funcionario) }}" class="link yellow">Editar</a>
+                            <a href="{{ route('funcionario.edit', $funcionario) }}" class="link green">Editar</a>
                             <form action="{{ route('funcionario.destroy', $funcionario) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')                                
@@ -43,7 +43,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Nenhum funcionário cadastrado.</td>
+                        <td colspan="5" class="text-center">Nenhum funcionário cadastrado.</td>
                     </tr>
                 @endforelse
             </tbody>

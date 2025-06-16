@@ -33,7 +33,7 @@
                         <td>{{ $cliente->email ?? '-' }}</td>
                         <td>
                             <a href="{{ route('cliente.show', $cliente) }}" class="link blue">Ver</a>
-                            <a href="{{ route('cliente.edit', $cliente) }}" class="link yellow">Editar</a>
+                            <a href="{{ route('cliente.edit', $cliente) }}" class="link green">Editar</a>
                             <form action="{{ route('cliente.destroy', $cliente) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')                                
@@ -43,7 +43,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Nenhum cliente cadastrado.</td>
+                        <td colspan="5" class="text-center">Nenhum cliente cadastrado.</td>
                     </tr>
                 @endforelse
             </tbody>

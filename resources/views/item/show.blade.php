@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-actions">
-                <a href="{{ route('item.edit', $item) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('item.edit', $item) }}" class="btn green">Editar</a>
                 <a href="{{ route('item.index') }}" class="btn gray">Voltar</a>
             </div>
         </div>

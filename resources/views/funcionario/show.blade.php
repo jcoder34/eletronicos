@@ -52,7 +52,7 @@
             </div>
 
             <div class="form-actions">
-                <a href="{{ route('funcionario.edit', $funcionario) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('funcionario.edit', $funcionario) }}" class="btn green">Editar</a>
                 <a href="{{ route('funcionario.index') }}" class="btn gray">Voltar</a>
             </div>
         </div>

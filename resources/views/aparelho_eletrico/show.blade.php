@@ -69,7 +69,7 @@
             @endif
 
             <div class="form-actions">
-                <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('aparelho_eletrico.edit', $aparelho_eletrico) }}" class="btn green">Editar</a>
                 <a href="{{ route('aparelho_eletrico.index') }}" class="btn gray">Voltar</a>
             </div>
         </div>
